@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
     <!-- Tailwind CSS v4 via jsDelivr CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="css/db-script.css">
+    <link rel="stylesheet" href="css/db-basics.css">
     <style>
         /* Font defaults */
         :root {
@@ -183,6 +183,38 @@
         <div id="content-erm" class="tab-content rounded-lg bg-white p-6">
             <h3 class="mb-4 text-2xl font-semibold">1. Das ER-Modell (Konzeptionell)</h3>
             <p class="mb-4 text-stone-700">Das ER-Modell (Entity-Relationship-Modell) ist der grafische Bauplan. Es zeigt die "Dinge" (Entitäten) und wie sie zusammenhängen (Beziehungen). Die **Kardinalität** (z.B. 1:1, 1:n) beschreibt die *Anzahl* der möglichen Beziehungen.</p>
+
+            <!-- Einführung: Grundelemente des ER-Modells -->
+            <div class="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
+                    <h4 class="mb-2 text-lg font-semibold text-stone-800">Grundelemente des ER-Modells</h4>
+                    <p class="mb-3 text-sm text-stone-700">Kurz erklärt: Entitätstyp, Beziehung und Attribut sind die Bausteine eines ER-Modells. Die kleine Illustration rechts zeigt die Idee visuell.</p>
+
+                    <div class="diagram-grid">
+                        <!-- Entitätstyp (links) -->
+                        <div class="diagram-outer">
+                            <div class="diagram-outer-inner">
+                                <div class="diagram-inner diagram-rect">Entitätstyp</div>
+                            </div>
+                            <div class="diagram-caption"><strong>Entitätstyp:</strong> Eine Menge gleichartiger Objekte — z. B. Personen, Produkte oder Orte.</div>
+                        </div>
+
+                        <!-- Beziehung (Mitte) -->
+                        <div class="diagram-outer">
+                            <div class="diagram-outer-inner">
+                                <div class="diagram-diamond-inner"><div class="diagram-inner transform -rotate-45">Beziehung</div></div>
+                            </div>
+                            <div class="diagram-caption"><strong>Beziehung:</strong> Beschreibt, wie Entitätstypen zueinander in Beziehung stehen; oft mit Kardinalitäten, z. B. <em>arbeitet in</em>.</div>
+                        </div>
+
+                        <!-- Attribut (rechts) -->
+                        <div class="diagram-outer">
+                            <div class="diagram-outer-inner">
+                                <div class="diagram-inner diagram-pill">Attribut</div>
+                            </div>
+                            <div class="diagram-caption"><strong>Attribut:</strong> Eine Eigenschaft einer Entität, z. B. Name, Geburtsdatum oder Kennung.</div>
+                        </div>
+                    </div>
+            </div>
 
             <div class="space-y-12 py-4">
                 <!-- 1:1 Beziehung -->
@@ -700,7 +732,7 @@ ROLLBACK;</code></pre>
 </footer>
 
     <script src="js/common.js"></script>
-    <script src="js/db-script.js"></script>
+    <script src="js/db-basics.js"></script>
 </body>
 </html>
 

@@ -92,3 +92,51 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
     transform: rotate(-45deg);
 }
+
+/* ERM intro reusable classes to reduce Tailwind noise in HTML */
+.erm-intro {
+    margin-bottom: 1.5rem; /* mb-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    border: 1px solid #e6e6e6; /* border-stone-200 approx */
+    background-color: #f8fafc; /* bg-stone-50 approx */
+    padding: 1rem; /* p-4 */
+}
+.diagram-grid {
+    margin-top: 0.75rem; /* mt-3 */
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+@media (min-width: 768px) {
+    .diagram-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.diagram-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.diagram-outer .diagram-outer-inner {
+    width: 100%;
+    max-width: 66%;
+    height: 7rem; /* h-28 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .diagram-outer .diagram-outer-inner { height: 9rem; /* md:h-36 */ }
+}
+.diagram-inner {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 0.5rem 1rem;
+    font-weight:500;
+    text-align:center;
+}
+.diagram-rect { border-radius: 0.375rem; border: 1px solid #d1d5db; background:white; }
+.diagram-pill { border-radius:9999px; border:1px solid #d1d5db; background:#f8fafc; }
+.diagram-diamond-inner { width:5rem; height:5rem; transform: rotate(45deg); border:1px solid #d1d5db; background:white; display:flex; align-items:center; justify-content:center; }
+.diagram-caption { margin-top:0.75rem; font-size:0.875rem; color:#475569; text-align: justify; hyphens: auto;}
+
