@@ -1,0 +1,39 @@
+html {
+    scroll-behavior: smooth;
+}
+.challenge-btn.active {
+    border-bottom-color: #3b82f6;
+    color: #3b82f6;
+    background-color: #eff6ff;
+}
+.erd-box {
+    border: 2px solid #4b5563; /* stone-700 */
+    background-color: #f8fafc; /* slate-50 */
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 600;
+    width: 140px; /* Feste Breite für Layout */
+}
+.erd-box-zw { /* Zwischentabelle */
+    border: 2px dashed #4b5563;
+    background-color: #ffffff;
+}
+.erd-attr {
+    font-weight: normal;
+    font-size: 0.875rem;
+    text-align: left;
+    border-top: 1px solid #cbd5e1; /* slate-300 */
+    margin-top: 4px;
+    padding-top: 4px;
+}
+.erd-rel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: #64748b; /* slate-600 */
+    font-family: monospace;
+    font-size: 0.875rem;
+    min-width: 40px;
+}

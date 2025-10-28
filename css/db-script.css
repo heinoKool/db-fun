@@ -1,0 +1,70 @@
+html {
+    scroll-behavior: smooth;
+}
+.tab-btn.active {
+    border-bottom-color: #3b82f6;
+    color: #3b82f6;
+}
+.norm-btn.active {
+    background-color: #3b82f6;
+    color: white;
+}
+.ebene-btn.active, .phase-btn.active {
+    background-color: #dbeafe;
+    border-left-color: #3b82f6;
+}
+.sql-card-header {
+    cursor: pointer;
+}
+
+.diagram-box {
+    border: 2px solid #4b5563;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    min-width: 120px;
+}
+.diagram-line {
+    flex-grow: 1;
+    background-color: #4b5563;
+    height: 2px;
+    position: relative;
+}
+.diagram-line::before {
+    content: attr(data-label-start);
+    position: absolute;
+    left: 8px;
+    bottom: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: #f9fafb;
+    padding: 0 4px;
+}
+.diagram-line::after {
+    content: attr(data-label-end);
+    position: absolute;
+    right: 8px;
+    bottom: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: #f9fafb;
+    padding: 0 4px;
+}
+.diagram-chen-rel {
+    border: 2px solid #4b5563;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transform: rotate(45deg);
+    min-width: 100px;
+    margin: 1.5rem;
+}
+.diagram-chen-rel span {
+    display: block;
+    transform: rotate(-45deg);
+}

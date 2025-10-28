@@ -4,52 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ERM-Modellierungs-Challenges</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        .challenge-btn.active {
-            border-bottom-color: #3b82f6;
-            color: #3b82f6;
-            background-color: #eff6ff;
-        }
-        .erd-box {
-            border: 2px solid #4b5563; /* stone-700 */
-            background-color: #f8fafc; /* slate-50 */
-            padding: 8px 12px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: 600;
-            width: 140px; /* Feste Breite für Layout */
-        }
-        .erd-box-zw { /* Zwischentabelle */
-            border: 2px dashed #4b5563;
-            background-color: #ffffff;
-        }
-        .erd-attr {
-            font-weight: normal;
-            font-size: 0.875rem;
-            text-align: left;
-            border-top: 1px solid #cbd5e1; /* slate-300 */
-            margin-top: 4px;
-            padding-top: 4px;
-        }
-        .erd-rel {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 8px;
-            color: #64748b; /* slate-600 */
-            font-family: monospace;
-            font-size: 0.875rem;
-            min-width: 40px;
-        }
-    </style>
+    <!-- Tailwind CSS v4 via jsDelivr CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../css/challenges.css">
 </head>
 <body class="bg-stone-100 text-stone-900 font-sans leading-relaxed">
 
-<!-- Chosen Palette: Tailwind 'Blue' (academic, tech-y) with warm neutral 'Stone' background -->
+<!-- Chosen Palette: Tailwind v4.1 'Blue' (academic, tech-y) with warm neutral 'Stone' background -->
 <!-- Application Structure Plan: This is an exercise/challenge page, designed to be a companion to the 'db_basics_spa.html' script. The structure is a tabbed interface. Each tab represents a modeling "Challenge" of increasing difficulty. This allows users to focus on one problem at a time. Each challenge contains a "Briefing" (a real-world user story), "Regeln" (the specific requirements, adapted from ERM-ueb_01.pdf), and a "Differenzierung" block with direct anchor links back to the main script for help. This promotes self-directed learning and competency. -->
 <!-- Visualization & Content Choices:
     - Task B (Kino) -> Re-skinned as "Streamix" (Netflix-Clone).
@@ -386,63 +347,8 @@
     <p class="text-sm text-stone-600">Diese Challenges basieren auf den Aufgaben aus "ERM-ueb_01.pdf" und sind eine Ergänzung zum <a href="db_basics_spa.html" class="font-medium text-blue-600 hover:underline">Interaktiven Skript</a>.</p>
 </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const tabBtns = document.querySelectorAll('.challenge-btn');
-        const tabContents = document.querySelectorAll('.challenge-content');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const targetTab = btn.getAttribute('data-tab');
-
-                tabContents.forEach(c => c.classList.add('hidden'));
-                const targetContent = document.getElementById(`content-${targetTab}`);
-                if (targetContent) {
-                    targetContent.classList.remove('hidden');
-                }
-            });
-        });
-
-        // NEU: Passwort-Logik für Lösungen
-        const solutionBtns = document.querySelectorAll('.solution-btn');
-
-        solutionBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const targetId = btn.getAttribute('data-target');
-                const passId = btn.getAttribute('data-pass');
-                const msgId = passId.replace('pass', 'msg');
-
-                const solutionDiv = document.getElementById(targetId);
-                const passInput = document.getElementById(passId);
-                const msgSpan = document.getElementById(msgId);
-
-                if (!solutionDiv || !passInput || !msgSpan) return;
-
-                // Wenn Lösung bereits sichtbar ist, verstecken
-                if (!solutionDiv.classList.contains('hidden')) {
-                    solutionDiv.classList.add('hidden');
-                    btn.textContent = 'Lösung anzeigen';
-                    passInput.classList.remove('hidden');
-                    msgSpan.textContent = '';
-                } else {
-                    // Wenn Lösung versteckt ist, Passwort prüfen
-                    if (passInput.value === 'erm') {
-                        solutionDiv.classList.remove('hidden');
-                        btn.textContent = 'Lösung verbergen';
-                        passInput.value = '';
-                        passInput.classList.add('hidden');
-                        msgSpan.textContent = '';
-                    } else {
-                        msgSpan.textContent = 'Falsches Passwort.';
-                    }
-                }
-            });
-        });
-    });
-</script>
+    <script src="../js/common.js"></script>
+    <script src="../js/challenges.js"></script>
 </body>
 </html>
 
