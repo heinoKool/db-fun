@@ -4,11 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interaktives Skript: Datenbank-Grundlagen</title>
+    <!-- IBM Plex Serif (regular 400, medium 500) and IBM Plex Mono (regular 400) -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
     <!-- Tailwind CSS v4 via jsDelivr CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="css/db-script.css">
+    <style>
+        /* Font defaults */
+        :root {
+            --font-serif: 'IBM Plex Serif', Georgia, serif;
+            --font-mono: 'IBM Plex Mono', Consolas, monospace;
+        }
+        body {
+            font-family: var(--font-serif);
+        }
+        pre, code, .font-mono {
+            font-family: var(--font-mono);
+        }
+
+        /* Override Tailwind's blue with our primary color */
+        .text-blue-600 { color: var(--color-primary) !important; }
+        .text-blue-700 { color: var(--color-primary) !important; }
+        .bg-blue-50 { background-color: var(--color-primary-light) !important; }
+        .border-blue-200 { border-color: var(--color-primary-light) !important; }
+        .hover\:text-blue-600:hover { color: var(--color-primary) !important; }
+        .hover\:bg-blue-50:hover { background-color: var(--color-primary-light) !important; }
+        .hover\:bg-blue-700:hover { background-color: var(--color-primary-hover) !important; }
+        .bg-blue-600 { background-color: var(--color-primary) !important; }
+
+        /* Override green buttons with gray */
+        .bg-green-600 { background-color: rgb(156 163 175) !important; } /* gray-400 */
+        .hover\:bg-green-700:hover { background-color: rgb(107 114 128) !important; } /* gray-500 */
+    </style>
 </head>
-<body class="bg-stone-50 text-stone-900 font-sans leading-relaxed">
+<body class="bg-stone-50 text-stone-900 leading-relaxed">
 
 <!-- Chosen Palette: Tailwind v4.1 'Blue' (academic, tech-y) with warm neutral 'Stone' background -->
 <!-- Application Structure Plan: The SPA is structured as a single-page interactive learning journey, mimicking the logical flow of the source PDF but transforming it into thematic, interactive sections. It starts with a sticky navigation header for quick access. The sections are: 1. "Grundlagen" (with a clickable ANSI-SPARC diagram), 2. "Design-Prozess" (with a clickable stepper for the 4 phases), 3. "Bauplan" (a tabbed interface for ERM, Table Models, and Keys), 4. "Daten-Hygiene" (a core interactive widget demonstrating 1NF, 2NF, 3NF transformations), and 5. "Die Sprache SQL" (using interactive "flashcards" for DDL, DML, etc.). This structure was chosen to replace passive reading with active exploration, allowing users to drill down into concepts (like Normalization or SQL commands) on demand, which is crucial for understanding complex, sequential topics. -->
@@ -24,12 +53,16 @@
 <header class="sticky top-0 z-50 bg-white shadow-md">
     <nav class="container mx-auto flex max-w-6xl items-center justify-between p-4">
         <h1 class="text-xl font-bold text-blue-600">DB-Skript Interaktiv</h1>
-        <div class="hidden space-x-4 md:flex">
-            <a href="#grundlagen" class="text-stone-600 hover:text-blue-600">Grundlagen</a>
-            <a href="#prozess" class="text-stone-600 hover:text-blue-600">Prozess</a>
-            <a href="#bauplan" class="text-stone-600 hover:text-blue-600">Bauplan</a>
-            <a href="#hygiene" class="text-stone-600 hover:text-blue-600">Hygiene</a>
-            <a href="#sprache" class="text-stone-600 hover:text-blue-600">SQL</a>
+        <div class="hidden items-center md:flex">
+            <div class="flex space-x-4">
+                <a href="#grundlagen" class="text-stone-600 hover:text-blue-600">Grundlagen</a>
+                <a href="#prozess" class="text-stone-600 hover:text-blue-600">Prozess</a>
+                <a href="#bauplan" class="text-stone-600 hover:text-blue-600">Bauplan</a>
+                <a href="#hygiene" class="text-stone-600 hover:text-blue-600">Hygiene</a>
+                <a href="#sprache" class="text-stone-600 hover:text-blue-600">SQL</a>
+            </div>
+            <div class="mx-4 h-5 w-px bg-stone-200"></div>
+            <a href="erm/challenges.html" class="text-stone-600 hover:text-blue-600 font-medium">Challenges</a>
         </div>
         <button class="md:hidden" id="mobile-menu-btn" aria-label="Menü öffnen">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
@@ -38,10 +71,12 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden p-4 md:hidden">
         <a href="#grundlagen" class="block py-2 text-stone-600 hover:text-blue-600">Grundlagen</a>
-        <a href="#prozess" class_block="block py-2 text-stone-600 hover:text-blue-600">Prozess</a>
+        <a href="#prozess" class="block py-2 text-stone-600 hover:text-blue-600">Prozess</a>
         <a href="#bauplan" class="block py-2 text-stone-600 hover:text-blue-600">Bauplan</a>
         <a href="#hygiene" class="block py-2 text-stone-600 hover:text-blue-600">Hygiene</a>
         <a href="#sprache" class="block py-2 text-stone-600 hover:text-blue-600">SQL</a>
+        <div class="my-2 h-px bg-stone-200"></div>
+        <a href="erm/challenges.html" class="block py-2 text-stone-600 hover:text-blue-600 font-medium">Challenges</a>
     </div>
 </header>
 
@@ -371,7 +406,7 @@
             <div id="content-n0" class="norm-content">
                 <div class="flex items-center justify-between">
                     <h4 class="mb-4 text-xl font-semibold">0NF: Die "Chaos-Playlist"</h4>
-                    <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n0" data-filename="0NF_Chaos_Playlist.csv">
+                    <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n0" data-filename="0NF_Chaos_Playlist.csv">
                         Export .csv
                     </button>
                 </div>
@@ -396,7 +431,7 @@
             <div id="content-n1" class="norm-content hidden">
                 <div class="flex items-center justify-between">
                     <h4 class="mb-4 text-xl font-semibold">1. Normalform (Atomar)</h4>
-                    <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n1" data-filename="1NF_Atomar.csv">
+                    <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n1" data-filename="1NF_Atomar.csv">
                         Export .csv
                     </button>
                 </div>
@@ -429,7 +464,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                             <h5 class="font-semibold">Tabelle: Playlist (PK: Playlist_ID)</h5>
-                            <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n2-playlist" data-filename="2NF_Playlist.csv">
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n2-playlist" data-filename="2NF_Playlist.csv">
                                 Export .csv
                             </button>
                         </div>
@@ -452,7 +487,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                             <h5 class="font-semibold">Tabelle: Playlist_Songs (PK: Playlist_ID, Song_Title)</h5>
-                            <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n2-songs" data-filename="2NF_Playlist_Songs.csv">
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n2-songs" data-filename="2NF_Playlist_Songs.csv">
                                 Export .csv
                             </button>
                         </div>
@@ -486,7 +521,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                             <h5 class="font-semibold">Tabelle: Playlist (PK: Playlist_ID)</h5>
-                            <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n3-playlist" data-filename="3NF_Playlist.csv">
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-playlist" data-filename="3NF_Playlist.csv">
                                 Export .csv
                             </button>
                         </div>
@@ -509,7 +544,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                             <h5 class="font-semibold">Tabelle: User (PK: User_Name)</h5>
-                            <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n3-user" data-filename="3NF_User.csv">
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-user" data-filename="3NF_User.csv">
                                 Export .csv
                             </button>
                         </div>
@@ -526,7 +561,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                             <h5 class="font-semibold">Tabelle: Artist (PK: Artist_Name)</h5>
-                            <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n3-artist" data-filename="3NF_Artist.csv">
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-artist" data-filename="3NF_Artist.csv">
                                 Export .csv
                             </button>
                         </div>
@@ -546,7 +581,7 @@
                     <div>
                         <div class="flex items-center justify-between">
                             <h5 class="font-semibold">Tabelle: Playlist_Songs (PK: Playlist_ID, Song_Title)</h5>
-                            <button class="export-btn rounded-md bg-green-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-green-700" data-target-table="table-n3-songs" data-filename="3NF_Playlist_Songs.csv">
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-songs" data-filename="3NF_Playlist_Songs.csv">
                                 Export .csv
                             </button>
                         </div>

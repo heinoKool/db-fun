@@ -1,17 +1,41 @@
+:root {
+    --color-primary: #0751cf;
+    --color-primary-light: #e6eeff;
+    --color-primary-hover: #0645b3;
+}
+
 html {
     scroll-behavior: smooth;
 }
+
+/* Typography enhancements */
+pre, code {
+    font-family: var(--font-mono);
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+pre code {
+    font-size: 1em; /* Reset nested code size */
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 500; /* Use medium weight for headers */
+}
+.font-mono {
+    font-family: var(--font-mono);
+}
+
 .tab-btn.active {
-    border-bottom-color: #3b82f6;
-    color: #3b82f6;
+    border-bottom-color: var(--color-primary);
+    color: var(--color-primary);
 }
 .norm-btn.active {
-    background-color: #3b82f6;
+    background-color: var(--color-primary);
     color: white;
 }
 .ebene-btn.active, .phase-btn.active {
-    background-color: #dbeafe;
-    border-left-color: #3b82f6;
+    background-color: var(--color-primary-light);
+    border-left-color: var(--color-primary);
 }
 .sql-card-header {
     cursor: pointer;

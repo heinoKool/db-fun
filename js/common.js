@@ -136,3 +136,52 @@ window.common = {
     setupExportButtons,
     setupSolutionButtons
 };
+
+// --- Side-drawer, focus trap and active-section highlighting ---
+(function(){
+    document.addEventListener('DOMContentLoaded', function(){
+        const openBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let lastFocusedElement = null;
+
+        function toggleMobileMenu() {
+            if(!mobileMenu) return;
+            if(mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        if(openBtn) {
+            openBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleMobileMenu();
+            });
+        }
+
+        // IntersectionObserver to highlight active section in nav
+        const navLinks = Array.from(document.querySelectorAll('header nav a:not([href^="erm/"])'));
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
+
+        if(sections.length && navLinks.length){
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting){
+                        const id = entry.target.id;
+                        navLinks.forEach(a => {
+                            // remove active styles
+                            a.classList.remove('active','bg-blue-50','font-semibold');
+                            const href = a.getAttribute('href');
+                            if(href === `#${id}`) {
+                                a.classList.add('active','bg-blue-50','font-semibold');
+                            }
+                        });
+                    }
+                });
+            }, { root: null, rootMargin: '0px 0px -45% 0px', threshold: 0 });
+
+            sections.forEach(s => observer.observe(s));
+        }
+    });
+})();
