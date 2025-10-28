@@ -225,37 +225,19 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">1:1-Beziehung (Eins-zu-Eins)</h4>
                     <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus Tabelle A ist mit *genau einem* Datensatz aus Tabelle B verbunden (z.B. `Lehrer` leitet `Klasse`).</p>
-                    <div class="flex items-center rounded-lg bg-stone-50 p-6">
-                        <div class="diagram-box">Lehrer</div>
-                        <div class="diagram-line" data-label-start="1" data-label-end="1"></div>
-                        <div class="diagram-chen-rel"><span>leitet</span></div>
-                        <div class="diagram-line" data-label-start="1" data-label-end="1"></div>
-                        <div class="diagram-box">Klasse</div>
-                    </div>
+                    <object type="image/svg+xml" data="diagrams/teacher-relation.svg" class="w-2xl h-32"></object>
                 </div>
                 <!-- 1:n Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">1:n-Beziehung (Eins-zu-Viele)</h4>
                     <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus A kann mit *vielen* Datensätzen aus B verbunden sein (z.B. `Klasse` hat viele `Schüler`).</p>
-                    <div class="flex items-center rounded-lg bg-stone-50 p-6">
-                        <div class="diagram-box">Klasse</div>
-                        <div class="diagram-line" data-label-start="1" data-label-end="n"></div>
-                        <div class="diagram-chen-rel"><span>hat</span></div>
-                        <div class="diagram-line" data-label-start="1" data-label-end="*"></div>
-                        <div class="diagram-box">Schüler</div>
-                    </div>
+                    <object type="image/svg+xml" data="diagrams/class-relation.svg" class="w-2xl h-32"></object>
                 </div>
                 <!-- m:n Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">m:n-Beziehung (Viele-zu-Viele)</h4>
                     <p class="mb-4 text-sm text-stone-600">Viele Datensätze aus A können mit *vielen* Datensätzen aus B verbunden sein (z.B. `Schüler` belegt viele `Kurse`).</p>
-                    <div class="flex items-center rounded-lg bg-stone-50 p-6">
-                        <div class="diagram-box">Schüler</div>
-                        <div class="diagram-line" data-label-start="n" data-label-end="m"></div>
-                        <div class="diagram-chen-rel"><span>belegt</span></div>
-                        <div class="diagram-line" data-label-start="*" data-label-end="*"></div>
-                        <div class="diagram-box">Kurs</div>
-                    </div>
+                    <object type="image/svg+xml" data="diagrams/course-relation.svg" class="w-2xl h-32"></object>
                     <p class="mt-3 text-sm text-stone-600"><strong>Wichtig:</strong> m:n-Beziehungen können nicht direkt in Tabellen umgesetzt werden. Sie *müssen* aufgelöst werden (siehe Tabellenmodell).</p>
                 </div>
             </div>
