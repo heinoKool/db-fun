@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interaktives Skript: Datenbank-Grundlagen</title>
+    <title>Datenbank-Grundlagen</title>
     <!-- IBM Plex Serif (regular 400, medium 500) and IBM Plex Mono (regular 400) -->
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
     <!-- Tailwind CSS v4 via jsDelivr CDN -->
@@ -52,7 +52,7 @@
 <!-- Sticky Header -->
 <header class="sticky top-0 z-50 bg-white shadow-md">
     <nav class="container mx-auto flex max-w-6xl items-center justify-between p-4">
-        <h1 class="text-xl font-bold text-blue-600">DB-Skript Interaktiv</h1>
+        <h1 class="text-xl font-bold text-blue-600">Datenbanken</h1>
         <div class="hidden items-center md:flex">
             <div class="flex space-x-4">
                 <a href="#grundlagen" class="text-stone-600 hover:text-blue-600">Grundlagen</a>
@@ -85,9 +85,10 @@
 
     <!-- Hero -->
     <section id="hero" class="mb-16 text-center">
-        <h2 class="mb-4 text-4xl font-bold tracking-tight text-stone-800 md:text-5xl">Vom PDF zur App:</h2>
-        <h3 class="mb-6 text-3xl font-bold text-blue-600 md:text-4xl">Interaktives Skript: Datenbank-Design</h3>
-        <p class="mx-auto max-w-3xl text-lg text-stone-700">Dies ist eine interaktive Aufbereitung des PDF-Skripts "a_db_03_dbms_sql_erm.pdf". Statt passiv zu lesen, können Sie hier klicken, erkunden und die Kernkonzepte des Datenbank-Designs Schritt für Schritt nachvollziehen. Nutzen Sie die Navigation oder scrollen Sie einfach.</p>
+        <h2 class="mb-4 text-4xl font-bold tracking-tight text-stone-800 md:text-5xl">Grundlagen Relationaler Datenbanken</h2>
+        <p class="mx-auto max-w-3xl text-lg text-stone-700">Lernziele: Du kannst Entitäten, Attribute und Beziehungen (inkl. Kardinalitäten) aus einer Aufgabenstellung herauslesen und in ein übersichtliches ER‑Diagramm übertragen.
+Anschließend wandelst du das ER‑Modell in ein relationales Schema (Tabellen mit PK/FK) um und schreibst passende SQL‑Statements, um Tabellen anzulegen und Abfragen (JOINs, Aggregationen) auszuführen.
+In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine Modell‑ und Designentscheidungen.</p>
     </section>
 
     <!-- 1. Grundlagen -->
@@ -187,7 +188,6 @@
             <!-- Einführung: Grundelemente des ER-Modells -->
             <div class="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
                     <h4 class="mb-2 text-lg font-semibold text-stone-800">Grundelemente des ER-Modells</h4>
-                    <p class="mb-3 text-sm text-stone-700">Kurz erklärt: Entitätstyp, Beziehung und Attribut sind die Bausteine eines ER-Modells. Die kleine Illustration rechts zeigt die Idee visuell.</p>
 
                     <div class="diagram-grid">
                         <!-- Entitätstyp (links) -->
@@ -213,10 +213,13 @@
                             </div>
                             <div class="diagram-caption"><strong>Attribut:</strong> Eine Eigenschaft einer Entität, z. B. Name, Geburtsdatum oder Kennung.</div>
                         </div>
-                    </div>
             </div>
+            <div class="mt-4 text-sm text-stone-600">
+            <strong>Kardinalität:</strong> Gibt an, wie viele Elemente einer Entitätsmenge mit wie vielen Elementen einer anderen Menge verbunden sein können (z. B. <em>1:1</em>, <em>1:n</em>, <em>m:n</em>). Sie wird durch eine Kante zwischen Entiäten/Beziehungen dargestellt und bestimmt die Anzahl der erlaubten Verknüpfungen. Sie ist wichtig beim Übersetzen des ER-Modells in Tabellen.
+            </div>
+        </div>
 
-            <div class="space-y-12 py-4">
+        <div class="space-y-12 py-4">
                 <!-- 1:1 Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">1:1-Beziehung (Eins-zu-Eins)</h4>
@@ -728,7 +731,7 @@ ROLLBACK;</code></pre>
 </main>
 
 <footer class="mt-16 border-t border-stone-200 bg-stone-100 p-8 text-center">
-    <p class="text-sm text-stone-600">Diese interaktive App wurde auf Basis des Dokuments "a_db_03_dbms_sql_erm.pdf" erstellt.</p>
+    <p class="text-sm text-stone-600">TODO Quellenangabe</p>
 </footer>
 
     <script src="js/common.js"></script>
