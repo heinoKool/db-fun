@@ -1,0 +1,104 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
+  <diagram id="L-C4-Pokedex-Liga" name="Pokedex-Liga ERM (Chen)">
+    <mxGraphModel dx="885" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="E1_Trainer" value="Trainer" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="360" y="68" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="E2_Pokemon" value="Pokémon" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="300" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="E3_Spezies" value="Spezies" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="650" y="300" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="E4_Arena" value="Arena" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1" y="68" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="R1_besitzt" value="besitzt" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="370" y="170" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R1_Trainer" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="440" y="120" as="geometry">
+            <mxPoint x="-21" y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L_R1_Pokemon" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="420" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R1_Trainer" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="E1_Trainer" target="R1_besitzt" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R1_Pokemon" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="1" source="R1_besitzt" target="E2_Pokemon" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R2_ist_Spezies" value="ist_Spezies" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="500" y="290" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R2_Pokemon" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="467" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R2_Spezies" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="640" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R2_Pokemon" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="E2_Pokemon" target="R2_ist_Spezies" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R2_Spezies" value="" style="endArrow=none;html=1;rounded=0;exitX=0.972;exitY=0.522;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="R2_ist_Spezies" target="E3_Spezies" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R3_leitet" value="leitet" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="187" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R3_Trainer" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="330" y="98" as="geometry">
+            <mxPoint x="20" y="-26" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L_R3_Arena" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="120" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R3_Trainer" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;entryX=1;entryY=1;entryDx=0;entryDy=0;" parent="1" source="E1_Trainer" edge="1" target="R3_leitet">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="90" as="sourcePoint" />
+            <mxPoint x="240" y="55" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R3_Arena" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.25;entryX=0;entryY=1;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="1" source="E4_Arena" edge="1" target="R3_leitet">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="70" as="sourcePoint" />
+            <mxPoint x="200" y="55" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R4_hat_Orden" value="hat_Orden" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="177" y="120" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R4_Trainer" value="M" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="350" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R4_Arena" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="120" y="113" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R4_Trainer" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.75;entryX=1;entryY=0;entryDx=0;entryDy=0;exitDx=0;exitDy=0;" parent="1" source="E1_Trainer" edge="1" target="R4_hat_Orden">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="110" as="sourcePoint" />
+            <mxPoint x="410" y="410" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R4_Arena" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="R4_hat_Orden" target="E4_Arena" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="109.09090909090912" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

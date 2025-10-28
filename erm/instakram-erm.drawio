@@ -1,0 +1,136 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
+  <diagram id="L-C2-Instakram" name="Instakram ERM (Chen)">
+    <mxGraphModel dx="977" dy="1917" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="E1_User" value="User" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="354" y="140" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A1_User_ID" value="User_ID" style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=4;" parent="1" vertex="1">
+          <mxGeometry x="250" y="80" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="L1_User" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.683;entryY=0.996;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="E1_User" target="A1_User_ID" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E2_Post" value="Post" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="358" y="420" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A2_Post_ID" value="Post_ID" style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=4;" parent="1" vertex="1">
+          <mxGeometry x="250" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="L2_Post" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="E2_Post" target="A2_Post_ID" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E3_Kommentar" value="Kommentar" style="shape=rectangle;perimeter=rectanglePerimeter;whiteSpace=wrap;html=1;align=center;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="358" y="660" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="A3_Komm_ID" value="Komm_ID" style="shape=ellipse;perimeter=ellipsePerimeter;whiteSpace=wrap;html=1;align=center;fontStyle=4;strokeWidth=1;" parent="1" vertex="1">
+          <mxGeometry x="366" y="740" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="L3_Komm" value="" style="endArrow=none;html=1;rounded=0;exitX=0.453;exitY=1.045;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.463;entryY=-0.064;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="E3_Kommentar" target="A3_Komm_ID" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R1_erstellt" value="erstellt" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="368" y="290" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R1_Post" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="398" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R1_User" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="E1_User" target="R1_erstellt" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R1_Post" value="" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=0;exitX=0.5;exitY=1;" parent="1" source="R1_erstellt" target="E2_Post" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R2_liked" value="liked" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="574" y="290" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L_R2_Post" value="N" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="494" y="440" as="geometry">
+            <mxPoint x="-17" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R2_User" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="E1_User" edge="1" target="R2_liked">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="474" y="50" as="sourcePoint" />
+            <mxPoint x="620" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="614" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="JPpLwjW3_8uCK6ybTtgj-2" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Edge_R2_User">
+          <mxGeometry x="-0.7475" y="-2" relative="1" as="geometry">
+            <mxPoint x="-21" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R2_Post" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="E2_Post" edge="1" target="R2_liked">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="468" y="450" as="sourcePoint" />
+            <mxPoint x="590" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="614" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R3_schreibt" value="schreibt" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;dashed=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="140" y="280" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4_hat" value="hat" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;dashed=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="364" y="530" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R3_User" value="1" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="E1_User" edge="1" target="R3_schreibt">
+          <mxGeometry x="-0.8584" y="10" relative="1" as="geometry">
+            <mxPoint x="160" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="180" y="180" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R3_Komm" value="N" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.001;entryY=0.37;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="R3_schreibt" target="E3_Kommentar" edge="1">
+          <mxGeometry x="0.9294" y="-15" relative="1" as="geometry">
+            <mxPoint x="154" y="470" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="180" y="675" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R4_Post" value="1" style="endArrow=none;html=1;rounded=0;exitX=0.424;exitY=1.053;entryX=0.45;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="E2_Post" edge="1" target="R4_hat">
+          <mxGeometry x="-0.7695" y="10" relative="1" as="geometry">
+            <mxPoint x="634" y="500" as="targetPoint" />
+            <Array as="points" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R4_Komm" value="N" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0.5;entryX=0.456;entryY=-0.055;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="R4_hat" target="E3_Kommentar" edge="1">
+          <mxGeometry x="0.7699" y="16" relative="1" as="geometry">
+            <mxPoint x="634" y="600" as="sourcePoint" />
+            <Array as="points" />
+            <mxPoint x="480" y="690" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R5_folgt" value="folgt" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="364" y="-20" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Edge_R5_Follower" value="M" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.56;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="R5_folgt" edge="1">
+          <mxGeometry x="0.6522" y="10" relative="1" as="geometry">
+            <mxPoint x="423.9999999999999" y="140" as="targetPoint" />
+            <mxPoint x="304" y="10" as="sourcePoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Edge_R5_Followed" value="N" style="endArrow=none;html=1;rounded=0;entryX=0.156;entryY=-0.055;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="R5_folgt" edge="1">
+          <mxGeometry x="0.685" y="-10" relative="1" as="geometry">
+            <mxPoint x="134" y="80" as="sourcePoint" />
+            <mxPoint x="383.5999999999999" y="137.79999999999995" as="targetPoint" />
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

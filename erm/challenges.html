@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERM-Modellierungs-Challenges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .challenge-btn.active {
+            border-bottom-color: #3b82f6;
+            color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        .erd-box {
+            border: 2px solid #4b5563; /* stone-700 */
+            background-color: #f8fafc; /* slate-50 */
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            width: 140px; /* Feste Breite für Layout */
+        }
+        .erd-box-zw { /* Zwischentabelle */
+            border: 2px dashed #4b5563;
+            background-color: #ffffff;
+        }
+        .erd-attr {
+            font-weight: normal;
+            font-size: 0.875rem;
+            text-align: left;
+            border-top: 1px solid #cbd5e1; /* slate-300 */
+            margin-top: 4px;
+            padding-top: 4px;
+        }
+        .erd-rel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8px;
+            color: #64748b; /* slate-600 */
+            font-family: monospace;
+            font-size: 0.875rem;
+            min-width: 40px;
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-900 font-sans leading-relaxed">
+
+<!-- Chosen Palette: Tailwind 'Blue' (academic, tech-y) with warm neutral 'Stone' background -->
+<!-- Application Structure Plan: This is an exercise/challenge page, designed to be a companion to the 'db_basics_spa.html' script. The structure is a tabbed interface. Each tab represents a modeling "Challenge" of increasing difficulty. This allows users to focus on one problem at a time. Each challenge contains a "Briefing" (a real-world user story), "Regeln" (the specific requirements, adapted from ERM-ueb_01.pdf), and a "Differenzierung" block with direct anchor links back to the main script for help. This promotes self-directed learning and competency. -->
+<!-- Visualization & Content Choices:
+    - Task B (Kino) -> Re-skinned as "Streamix" (Netflix-Clone).
+    - Task D (Wald) -> Re-skinned as "UrbanMove" (E-Scooter-App). This is a 1:1 translation of the logic (Tree -> Scooter, Species -> Model, Measurement -> Ride_Log).
+    - Task C (Plätzchen) -> Re-skinned as "Gastro-Hero" (Meal-Kit-App).
+    - Task A (Schule) -> Dropped, as 'Schule' is the main *example* in the script. Replaced with "Fit-Track" as a clearer warm-up.
+    - Interaction: JS-powered tabs to switch between challenges.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <nav class="container mx-auto flex max-w-6xl items-center justify-between p-4">
+        <h1 class="text-xl font-bold text-blue-600">ERM-Challenges</h1>
+        <a href="db_basics_spa.html" class="text-sm font-medium text-stone-600 hover:text-blue-600">&larr; Zurück zum Skript</a>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto mt-8 max-w-5xl p-4 md:p-8">
+
+    <!-- Hero -->
+    <section id="hero" class="mb-12">
+        <h2 class="mb-4 text-4xl font-bold tracking-tight text-stone-800 md:text-5xl">Praxis-Mission: ER-Modellierung</h2>
+        <p class="mt-4 text-lg text-stone-700">Du hast die Theorie im <a href="db_basics_spa.html" class="font-medium text-blue-600 hover:underline">interaktiven Skript</a> verstanden? Nice. Jetzt geht's an die Praxis.</p>
+        <p class="mt-2 text-lg text-stone-700">Hier sind vier "Real-World"-Challenges, die auf den Aufgaben aus dem PDF (`ERM-ueb_01.pdf`) basieren, aber in ein modernes Startup-Szenario verpackt sind. Deine Mission: Übersetze die Anforderungen in ein sauberes ER-Modell (UML-Notation).</p>
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges">
+        <!-- Tabs Navigation -->
+        <div class="mb-6 flex flex-wrap border-b border-stone-300">
+            <button class="challenge-btn active flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c1">Challenge 1: Kino</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c2">Challenge 2: Instakram</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c3">Challenge 3: Pokédex-Basis</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c4">Challenge 4: Pokédex-Liga</button>
+        </div>
+
+        <!-- Challenge Content -->
+        <div class="rounded-lg bg-white shadow-lg">
+            <!-- Challenge 1: Kino -->
+            <div id="content-c1" class="challenge-content p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 1 (Warm-Up): "Kino"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du designst das System für eine große Kinokette, um deren Standorte, Säle und das laufende Programm zu verwalten. (Basiert auf PDF-Aufgabe B).</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Ein <strong>Ort</strong> (z.B. "Berlin") hat mehrere <strong>Kinos</strong>. Ein Kino ist aber in genau einem Ort.</li>
+                    <li>Ein <strong>Kino</strong> (z.B. "CineStar Potsdamer Platz") hat mehrere <strong>Kinosäle</strong>.</li>
+                    <li>Ein <strong>Film</strong> (z.B. "Dune 2") kann in vielen <strong>Kinos</strong> gezeigt werden.</li>
+                    <li>Ein <strong>Kino</strong> kann viele <strong>Filme</strong> zeigen. (Vorsicht, Falle! Wie löst man das sauber auf?)</li>
+                    <li>Eine <strong>Vorstellung</strong> (der eigentliche "Event") ist die Vorführung von *genau einem* <strong>Film</strong> in *genau einem* <strong>Saal</strong> zu einem bestimmten <strong>Datum/Uhrzeit</strong>.</li>
+                    <li>Jeder <strong>Saal</strong> hat Attribute, die du mitspeichern sollst: `Name` (z.B. "Saal 8"), `Sitzplätze` (z.B. 250) und `Leinwandgröße_m2` (z.B. 50).</li>
+                </ul>
+
+                <div class="rounded-lg bg-blue-50 p-4">
+                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
+                    <p class="text-blue-900">Pro-Tipp: Die "Vorstellung" ist hier der absolute Schlüssel!</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm">
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Die Kette Ort &rarr; Kino &rarr; Saal sind klassische 1:n-Beziehungen.</a></li>
+                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Die "Vorstellung" löst die m:n-Beziehung zwischen Film und Saal auf (nicht Film und Kino!).</a></li>
+                        <li>Vergiss nicht, die Attribute (`Sitzplätze` etc.) an die richtige Entität (`Saal`) zu hängen.</li>
+                    </ul>
+                </div>
+
+                <!-- LÖSUNG C1 -->
+                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c1" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c1" data-pass="pass-c1">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c1" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c1" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">Die Kette `Ort &rarr; Kino &rarr; Saal` ist 1:n. Die `Vorstellung` ist die Zwischentabelle, die `Film` und `Saal` (nicht `Kino`!) verbindet und das Datum/die Uhrzeit speichert.</p>
+                        <div class="flex flex-col space-y-4 overflow-x-auto p-4">
+                            <!-- Ort -> Kino -> Saal -->
+                            <div class="flex items-center">
+                                <div class="erd-box">Ort</div>
+                                <div class="erd-rel flex-1 border-b-2 border-stone-400">1..1</div>
+                                <div class="erd-box">Kino</div>
+                                <div class="erd-rel flex-1 border-b-2 border-stone-400">1..1</div>
+                                <div class="erd-box">
+                                    Saal
+                                    <div class="erd-attr">
+                                        - Name<br>
+                                        - Sitzplätze<br>
+                                        - Leinwand_m2
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Saal -> Vorstellung <- Film -->
+                            <div class="flex items-center justify-center">
+                                <div class="h-10 w-1/3 border-r-2 border-stone-400"></div>
+                                <div class="h-10 w-1/3 border-l-2 border-stone-400"></div>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <div class="erd-rel border-t-2 border-r-2 border-stone-400 p-2">*</div>
+                                <div class="erd-box erd-box-zw">
+                                    Vorstellung
+                                    <div class="erd-attr">
+                                        - Datum_Uhrzeit
+                                    </div>
+                                </div>
+                                <div class="erd-rel border-t-2 border-l-2 border-stone-400 p-2">*</div>
+                            </div>
+                            <div class="flex items-center justify-center">
+                                <div class="h-10 w-1/3 border-r-2 border-stone-400"></div>
+                                <div class="h-10 w-1/3 border-l-2 border-stone-400"></div>
+                            </div>
+                            <div class="flex items-center justify-around">
+                                <div class="erd-box">Film</div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge 2: Instakram -->
+            <div id="content-c2" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 2 (Medium): "Instakram"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust die Core-Features von Instagram nach. Im Zentrum stehen User, Posts, Kommentare, Likes und natürlich Follower.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Ein <strong>User</strong> kann mehrere <strong>Posts</strong> erstellen. Ein Post gehört genau einem User.</li>
+                    <li>Ein <strong>User</strong> kann viele <strong>Posts</strong> "liken". Ein <strong>Post</strong> kann von vielen <strong>Usern</strong> "geliked" werden.</li>
+                    <li>Ein <strong>User</strong> kann viele <strong>Kommentare</strong> schreiben. Ein <strong>Post</strong> kann viele <strong>Kommentare</strong> haben.</li>
+                    <li>Ein <strong>Kommentar</strong> gehört immer zu *genau einem* <strong>User</strong> UND *genau einem* <strong>Post</strong>.</li>
+                    <li>(Die Knifflige): Ein <strong>User</strong> kann vielen anderen <strong>Usern</strong> folgen. Ein <strong>User</strong> kann von vielen anderen <strong>Usern</strong> gefolgt werden.</li>
+                </ul>
+
+                <div class="rounded-lg bg-blue-50 p-4">
+                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
+                    <p class="text-blue-900">Hier sind drei verschiedene Beziehungs-Typen drin!</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm">
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">User &rarr; Post: Eine klassische 1:n-Beziehung.</a></li>
+                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">User &harr; Post (Like): Eine m:n-Beziehung, braucht eine Zwischentabelle `Likes`.</a></li>
+                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">User &harr; User (Follow): Eine m:n-Beziehung, die sich auf *dieselbe* Tabelle bezieht! Die Zwischentabelle `Follower` braucht zwei Spalten: `follower_id` und `followed_id`.</a></li>
+                        <li>Die Entität `Kommentar` ist der "Schnittpunkt" und hat zwei 1:n-Beziehungen (zwei Fremdschlüssel): einen zu `User` und einen zu `Post`.</li>
+                    </ul>
+                </div>
+
+                <!-- LÖSUNG C2 -->
+                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c2" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c2" data-pass="pass-c2">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c2" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c2" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">`User` &harr; `Post` ist 1:n. `Likes` und `Follower` sind Zwischentabellen. `Kommentar` ist eine eigene Entität, die per 1:n mit `User` und `Post` verbunden ist.</p>
+                        <div class="grid grid-cols-3 gap-y-4 p-4">
+                            <!-- Row 1: Likes & Follower -->
+                            <div class="erd-box erd-box-zw">Likes</div>
+                            <div class="erd-box erd-box-zw">Follower</div>
+                            <div></div>
+                            <!-- Row 2: Connecting lines -->
+                            <div class="flex justify-center">
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                            </div>
+                            <div class="flex justify-center">
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                            </div>
+                            <div></div>
+                            <!-- Row 3: User <-> Post -->
+                            <div class="erd-box">User</div>
+                            <div class="erd-rel border-b-2 border-stone-400">1..* (liked)</div>
+                            <div class="erd-box">Post</div>
+                            <!-- Row 4: Connecting lines -->
+                            <div class="flex justify-between px-10">
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                            </div>
+                            <div></div>
+                            <div class="flex justify-center">
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                            </div>
+                            <!-- Row 5: Kommentar -->
+                            <div class="erd-box">Kommentar</div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <p class="mt-4 text-sm text-stone-600"><strong>Detail `Follower`:</strong> `Follower` hat 2 FKs zur `User`-Tabelle: `follower_id` und `followed_id`.</p>
+                        <p class="mt-2 text-sm text-stone-600"><strong>Detail `Kommentar`:</strong> `Kommentar` hat 1 FK zu `User` (wer hat's geschrieben) und 1 FK zu `Post` (wo steht's).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge 3: Pokédex-Basis -->
+            <div id="content-c3" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 3 (Hard): "Pokédex-Basis"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du bist Professor Eich! Du baust die Basis-Datenbank für den Pokédex. Es geht um die Pokémon-Spezies, ihre Typen und Attacken.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Eine <strong>Spezies</strong> (z.B. "Bisasam", "Pikachu") hat eine Pokédex-Nummer und einen Namen.</li>
+                    <li>Jede <strong>Spezies</strong> gehört zu (mindestens) einem <strong>Typ</strong> (z.B. "Pflanze", "Elektro").</li>
+                    <li>Ein <strong>Typ</strong> kann zu vielen <strong>Spezies</strong> gehören. (z.B. "Flug" bei "Glurak" und "Taubsi").</li>
+                    <li>Eine <strong>Spezies</strong> kann mehrere <strong>Attacken</strong> lernen.</li>
+                    <li>Eine <strong>Attacke</strong> (z.B. "Tackle", "Donnerblitz") kann von vielen <strong>Spezies</strong> gelernt werden.</li>
+                    <li>Jede <strong>Attacke</strong> hat aber *genau einen* <strong>Typ</strong> (z.B. "Tackle" ist Typ "Normal", "Donnerblitz" ist Typ "Elektro").</li>
+                    <li>(Bonus): Eine <strong>Spezies</strong> kann sich zu einer anderen <strong>Spezies</strong> entwickeln (z.B. "Pikachu" &rarr; "Raichu").</li>
+                </ul>
+
+                <div class="rounded-lg bg-blue-50 p-4">
+                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
+                    <p class="text-blue-900">Hier dreht sich fast alles um m:n-Beziehungen.</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm">
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Spezies &harr; Typ: Eine m:n-Beziehung (Zwischentabelle `Spezies_Typ`).</a></li>
+                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Spezies &harr; Attacke: Noch eine m:n-Beziehung (Zwischentabelle `Lernbare_Attacken`).</a></li>
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Attacke &rarr; Typ: Eine 1:n-Beziehung (Wo kommt der FK hin?).</a></li>
+                        <li>(Bonus): Die "Entwicklung" ist eine 1:n-Beziehung auf sich selbst (Self-Join). Die Tabelle `Spezies` braucht eine Spalte `entwickelt_aus_id_FK`, die auf `Spezies.id` zeigt.</li>
+                    </ul>
+                </div>
+
+                <!-- LÖSUNG C3 -->
+                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c3" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c3" data-pass="pass-c3">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c3" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c3" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">Zwei m:n-Beziehungen (`Spezies_Typ`, `Lernbare_Attacken`) und eine 1:n-Beziehung (`Attacke` &rarr; `Typ`).</p>
+                        <div class="grid grid-cols-3 gap-y-4 p-4">
+                            <div class="erd-box">Spezies</div>
+                            <div class="erd-rel">*</div>
+                            <div class="erd-box erd-box-zw">Spezies_Typ</div>
+
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+                            <div></div>
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+
+                            <div class="erd-box erd-box-zw">Lernbare_Attacken</div>
+                            <div></div>
+                            <div class="erd-box">Typ</div>
+
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+                            <div></div>
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+
+                            <div class="erd-box">Attacke</div>
+                            <div class="erd-rel border-b-2 border-stone-400">1..1</div>
+                            <div></div>
+                        </div>
+                        <p class="mt-4 text-sm text-stone-600"><strong>Bonus (Entwicklung):</strong> Die Entität `Spezies` hat einen Fremdschlüssel `entwickelt_aus_id` (1:n), der auf ihre *eigene* `id`-Spalte zeigt (Self-Join).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Challenge 4: Pokédex-Liga -->
+            <div id="content-c4" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 4 (Profi): "Pokédex-Liga"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust auf Challenge 3 auf. Jetzt kommen die Trainer, die individuellen Pokémon und die Arenen ins Spiel.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>(Basis): Du brauchst die Entität <strong>Trainer</strong> (z.B. "Ash", "Misty").</li>
+                    <li>Ein <strong>Trainer</strong> kann viele <strong>Pokémon</strong> besitzen (seine "individuellen" Pokémon im Team).</li>
+                    <li>Ein individuelles <strong>Pokémon</strong> gehört aber zu *genau einem* <strong>Trainer</strong>.</li>
+                    <li>Jedes individuelle <strong>Pokémon</strong> ist von *genau einer* <strong>Spezies</strong> (aus Challenge 3).</li>
+                    <li>(Arena): Du brauchst die Entität <strong>Arena</strong> (z.B. "Marmoria City Arena").</li>
+                    <li>Jede <strong>Arena</strong> hat *genau einen* <strong>Trainer</strong> als <strong>Arenaleiter</strong>. Ein Trainer kann nur *eine* Arena leiten.</li>
+                    <li>(Orden): Ein <strong>Trainer</strong> kann viele <strong>Orden</strong> von verschiedenen <strong>Arenen</strong> gewinnen.</li>
+                    <li>Eine <strong>Arena</strong> kann ihren <strong>Orden</strong> an viele <strong>Trainer</strong> vergeben haben.</li>
+                </ul>
+
+                <div class="rounded-lg bg-blue-50 p-4">
+                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
+                    <p class="text-blue-900">Hier kommt alles zusammen: 1:1, 1:n und m:n.</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm">
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Trainer &harr; Arena (Leiter): Eine klassische 1:1-Beziehung.</a></li>
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Trainer &rarr; Pokémon: 1:n.</a></li>
+                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Spezies &rarr; Pokémon: 1:n. (Die Entität `Pokémon` hat also zwei Fremdschlüssel!).</a></li>
+                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Trainer &harr; Arena (Orden): Eine m:n-Beziehung. Die Zwischentabelle `Gewonnene_Orden` speichert, welcher Trainer welchen Orden hat.</a></li>
+                    </ul>
+                </div>
+
+                <!-- LÖSUNG C4 -->
+                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c4" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c4" data-pass="pass-c4">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c4" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c4" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">`Trainer` ist die zentrale Entität. `Trainer` &harr; `Arena` (Leiter) ist 1:1. `Trainer` &harr; `Arena` (Orden) ist m:n. `Pokemon` (individuell) ist die 1:n-Schnittstelle zu `Trainer` und `Spezies`.</p>
+                        <div class="grid grid-cols-3 gap-y-4 p-4">
+                            <div></div>
+                            <div class="erd-box">Spezies</div>
+                            <div></div>
+
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+                            <div></div>
+
+                            <div class="erd-box">Trainer</div>
+                            <div class="erd-rel border-b-2 border-stone-400">1..*</div>
+                            <div class="erd-box">Pokemon</div>
+
+                            <div class="flex justify-between px-10">
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                                <div class="h-10 w-0 border-l-2 border-stone-400"></div>
+                            </div>
+                            <div></div>
+                            <div class="flex justify-center"><div class="h-10 w-0 border-l-2 border-stone-400"></div></div>
+
+                            <div class="erd-box erd-box-zw">Gewonnene_Orden</div>
+                            <div class="erd-rel border-t-2 border-stone-400">1..1 (leitet)</div>
+                            <div class="erd-box">Arena</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="mt-16 border-t border-stone-200 bg-stone-200 p-8 text-center">
+    <p class="text-sm text-stone-600">Diese Challenges basieren auf den Aufgaben aus "ERM-ueb_01.pdf" und sind eine Ergänzung zum <a href="db_basics_spa.html" class="font-medium text-blue-600 hover:underline">Interaktiven Skript</a>.</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabBtns = document.querySelectorAll('.challenge-btn');
+        const tabContents = document.querySelectorAll('.challenge-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const targetTab = btn.getAttribute('data-tab');
+
+                tabContents.forEach(c => c.classList.add('hidden'));
+                const targetContent = document.getElementById(`content-${targetTab}`);
+                if (targetContent) {
+                    targetContent.classList.remove('hidden');
+                }
+            });
+        });
+
+        // NEU: Passwort-Logik für Lösungen
+        const solutionBtns = document.querySelectorAll('.solution-btn');
+
+        solutionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const passId = btn.getAttribute('data-pass');
+                const msgId = passId.replace('pass', 'msg');
+
+                const solutionDiv = document.getElementById(targetId);
+                const passInput = document.getElementById(passId);
+                const msgSpan = document.getElementById(msgId);
+
+                if (!solutionDiv || !passInput || !msgSpan) return;
+
+                // Wenn Lösung bereits sichtbar ist, verstecken
+                if (!solutionDiv.classList.contains('hidden')) {
+                    solutionDiv.classList.add('hidden');
+                    btn.textContent = 'Lösung anzeigen';
+                    passInput.classList.remove('hidden');
+                    msgSpan.textContent = '';
+                } else {
+                    // Wenn Lösung versteckt ist, Passwort prüfen
+                    if (passInput.value === 'erm') {
+                        solutionDiv.classList.remove('hidden');
+                        btn.textContent = 'Lösung verbergen';
+                        passInput.value = '';
+                        passInput.classList.add('hidden');
+                        msgSpan.textContent = '';
+                    } else {
+                        msgSpan.textContent = 'Falsches Passwort.';
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
+
