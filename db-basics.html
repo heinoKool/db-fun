@@ -187,39 +187,40 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
 
             <!-- Einführung: Grundelemente des ER-Modells -->
             <div class="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
-                    <h4 class="mb-2 text-lg font-semibold text-stone-800">Grundelemente des ER-Modells</h4>
+                <h4 class="mb-2 text-lg font-semibold text-stone-800">Grundelemente des ER-Modells</h4>
 
-                    <div class="diagram-grid">
-                        <!-- Entitätstyp (links) -->
-                        <div class="diagram-outer">
-                            <div class="diagram-outer-inner">
-                                <div class="diagram-inner diagram-rect">Entitätstyp</div>
-                            </div>
-                            <div class="diagram-caption"><strong>Entitätstyp:</strong> Eine Menge gleichartiger Objekte — z. B. Personen, Produkte oder Orte.</div>
+                <div class="diagram-grid">
+                    <!-- Entitätstyp (links) -->
+                    <div class="diagram-outer">
+                        <div class="diagram-outer-inner">
+                            <div class="diagram-inner diagram-rect">Entitätstyp</div>
                         </div>
+                        <div class="diagram-caption"><strong>Entitätstyp:</strong> Eine Menge gleichartiger Objekte — z. B. Personen, Produkte oder Orte.</div>
+                    </div>
 
-                        <!-- Beziehung (Mitte) -->
-                        <div class="diagram-outer">
-                            <div class="diagram-outer-inner">
-                                <div class="diagram-diamond-inner"><div class="diagram-inner transform -rotate-45">Beziehung</div></div>
-                            </div>
-                            <div class="diagram-caption"><strong>Beziehung:</strong> Beschreibt, wie Entitätstypen zueinander in Beziehung stehen; oft mit Kardinalitäten, z. B. <em>arbeitet in</em>.</div>
+                    <!-- Beziehung (Mitte) -->
+                    <div class="diagram-outer">
+                        <div class="diagram-outer-inner">
+                            <div class="diagram-diamond-inner"><div class="diagram-inner transform -rotate-45">Beziehung</div></div>
                         </div>
+                        <div class="diagram-caption"><strong>Beziehung:</strong> Beschreibt, wie Entitätstypen zueinander in Beziehung stehen; oft mit Kardinalitäten, z. B. <em>arbeitet in</em>.</div>
+                    </div>
 
-                        <!-- Attribut (rechts) -->
-                        <div class="diagram-outer">
-                            <div class="diagram-outer-inner">
-                                <div class="diagram-inner diagram-pill">Attribut</div>
-                            </div>
-                            <div class="diagram-caption"><strong>Attribut:</strong> Eine Eigenschaft einer Entität, z. B. Name, Geburtsdatum oder Kennung.</div>
+                    <!-- Attribut (rechts) -->
+                    <div class="diagram-outer">
+                        <div class="diagram-outer-inner">
+                            <div class="diagram-inner diagram-pill">Attribut</div>
                         </div>
+                        <div class="diagram-caption"><strong>Attribut:</strong> Eine Eigenschaft einer Entität, z. B. Name, Geburtsdatum oder Kennung.</div>
+                    </div>
+                </div>
             </div>
-            <div class="mt-4 text-sm text-stone-600">
-            <strong>Kardinalität:</strong> Gibt an, wie viele Elemente einer Entitätsmenge mit wie vielen Elementen einer anderen Menge verbunden sein können (z. B. <em>1:1</em>, <em>1:n</em>, <em>m:n</em>). Sie wird durch eine Kante zwischen Entiäten/Beziehungen dargestellt und bestimmt die Anzahl der erlaubten Verknüpfungen. Sie ist wichtig beim Übersetzen des ER-Modells in Tabellen.
-            </div>
-        </div>
 
-        <div class="space-y-12 py-4">
+            <div class="space-y-12 py-4">
+                <h3 class="mb-2 text-lg font-semibold text-stone-800">Kardinalität</h3>
+                <p class="mb-4 text-sm text-stone-600">
+                    Gibt an, wie viele Elemente einer Entitätsmenge mit wie vielen Elementen einer anderen Menge verbunden sein können (z. B. <em>1:1</em>, <em>1:n</em>, <em>m:n</em>). Sie wird durch eine Kante zwischen Entiäten/Beziehungen dargestellt und bestimmt die Anzahl der erlaubten Verknüpfungen. Sie ist wichtig beim Übersetzen des ER-Modells in Tabellen.
+                </p>
                 <!-- 1:1 Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">1:1-Beziehung (Eins-zu-Eins)</h4>
