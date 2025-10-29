@@ -4,6 +4,12 @@ on:
   push:
     branches: [ main ]
 
+# Explicit permissions so the workflow can push to gh-pages.
+# If you prefer to use the repository's default workflow permissions, you can omit this block
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,6 +22,10 @@ jobs:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer a personal access token stored in the repository secret 'DEPLOY_TOKEN'.
+          # Create a PAT with 'repo' scope and add it in Settings → Secrets → Actions as DEPLOY_TOKEN.
+          # If DEPLOY_TOKEN is not present, the action will fall back to the automatically provided GITHUB_TOKEN,
+          # but that token requires repository workflow permissions to allow pushing (see repo Settings → Actions).
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_dir: ./
           publish_branch: gh-pages
