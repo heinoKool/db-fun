@@ -342,32 +342,6 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
 
             <h4 class="mb-4 mt-8 text-xl font-semibold">Visuelles Beispiel: PK & FK</h4>
             <p class="mb-4 text-stone-700">Der <strong>Primärschlüssel (PK)</strong> identifiziert eine Klasse eindeutig. Der <strong>Fremdschlüssel (FK)</strong> in der Schülertabelle stellt die Verbindung her, indem er auf den PK der Klasse verweist.</p>
-            <div class="grid grid-cols-1 items-start gap-x-8 gap-y-4 md:grid-cols-2">
-                <!-- Klasse Table -->
-                <div>
-                    <h5 class="text-sm font-semibold">Tabelle: Klasse</h5>
-                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
-                        <tbody class="divide-y divide-stone-200">
-                        <tr><td class="p-2 bg-yellow-100">1</td><td class="p-2">10a</td></tr>
-                        <tr><td class="p-2 bg-yellow-100">2</td><td class="p-2">10b</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Schüler Table -->
-                <div>
-                    <h5 class="text-sm font-semibold">Tabelle: Schüler (zeigt auf Klasse)</h5>
-                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">id (PK)</th><th class="p-2 text-left">Name</th><th class="p-2 text-left bg-blue-200">kid_FK (FK) &larr;</th></tr></thead>
-                        <tbody class="divide-y divide-stone-200">
-                        <tr><td class="p-2 bg-yellow-100">101</td><td class="p-2">Max</td><td class="p-2 bg-blue-100">1</td></tr>
-                        <tr><td class="p-2 bg-yellow-100">102</td><td class="p-2">Anna</td><td class="p-2 bg-blue-100">2</td></tr>
-                        <tr><td class="p-2 bg-yellow-100">103</td><td class="p-2">Tim</td><td class="p-2 bg-blue-100">1</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
             <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <div class="rounded-lg border border-stone-200 p-4">
                     <strong class="text-blue-600">Primärschlüssel (Primary Key, PK)</strong>
@@ -377,6 +351,11 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                         <li>Muss eindeutig sein.</li>
                         <li>Oft ein "künstlicher" Zählschlüssel (z.B. `AUTO_INCREMENT`).</li>
                     </ul>
+                    <h5 class="mt-3 text-xs font-semibold uppercase">Beispiel: Tabelle: Klasse</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200"><tr><td class="p-2 bg-yellow-100">1</td><td class="p-2">10a</td></tr><tr><td class="p-2 bg-yellow-100">2</td><td class="p-2">10b</td></tr></tbody>
+                    </table>
                 </div>
                 <div class="rounded-lg border border-stone-200 p-4">
                     <strong class="text-blue-600">Fremdschlüssel (Foreign Key, FK)</strong>
@@ -384,6 +363,28 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                     <ul class="ml-5 mt-2 list-disc text-sm text-stone-600">
                         <li>Stellt die <strong>Referentielle Integrität</strong> sicher: Es kann keinen `Schüler` mit einer `kid_FK` geben, die nicht in der `Klasse`-Tabelle als `id` existiert.</li>
                     </ul>
+                    <h5 class="mt-3 text-xs font-semibold uppercase">Beispiel: Tabelle: Schüler (mit FK)</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">id (PK)</th><th class="p-2 text-left">Vorname</th><th class="p-2 text-left bg-blue-200">kid_FK (FK)</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200">
+                            <tr>
+                                <td class="p-2 bg-yellow-100">101</td>
+                                <td class="p-2">Max</td>
+                                <td class="p-2 bg-blue-50">1</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 bg-yellow-100">102</td>
+                                <td class="p-2">Anna</td>
+                                <td class="p-2 bg-blue-50">2</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2 bg-yellow-100">103</td>
+                                <td class="p-2">Tim</td>
+                                <td class="p-2 bg-blue-100">1</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
                 </div>
                 <div class="rounded-lg border border-stone-200 p-4">
                     <strong class="text-blue-600">Verbundschlüssel (Composite Key)</strong>
@@ -406,9 +407,9 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
         </div>
     </section>
 
-    <!-- 4. Daten-Hygiene -->
+    <!-- 4. Daten-Optimierung -->
     <!-- <section id="hygiene" class="mb-16 scroll-mt-24">
-        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">4. Daten-Hygiene: Normalisierung</h2>
+        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">4. Optimierung: Normalisierung</h2>
         <p class="mb-4 text-stone-700">Warum der ganze Aufwand mit dem Aufteilen in Tabellen? Um Redundanz (doppelte Daten) zu vermeiden. Redundanz führt zu "Anomalien" (Fehlern) bei Änderungen, Löschungen oder beim Einfügen von Daten. Die Lösung ist die **Normalisierung**.</p>
         <p class="mb-6 text-stone-700">Wir verwandeln eine "unsaubere" Spotify-Playlist-Tabelle (0NF) schrittweise in "saubere" Tabellen (bis zur 3. Normalform). <strong class="text-blue-600">Klicken Sie sich durch die Normalformen</strong>, um die Transformation der Daten zu sehen.</p>
 
