@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERM-Modellierungs-Challenges</title>
+    <!-- IBM Plex Serif (regular 400, medium 500) and IBM Plex Mono (regular 400) -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v4 via jsDelivr CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../css/challenges.css">
+    <style>
+        /* Font defaults (copied from db-basics.html) */
+        :root {
+            --font-serif: 'IBM Plex Serif', Georgia, serif;
+            --font-mono: 'IBM Plex Mono', Consolas, monospace;
+        }
+        body {
+            font-family: var(--font-serif);
+        }
+        pre, code, .font-mono {
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-900 font-sans leading-relaxed">
+
+<!-- Chosen Palette: Tailwind v4.1 'Blue' (academic, tech-y) with warm neutral 'Stone' background -->
+<!-- Application Structure Plan: This is an exercise/challenge page, designed to be a companion to the 'db_basics_spa.html' script. The structure is a tabbed interface. Each tab represents a modeling "Challenge" of increasing difficulty. This allows users to focus on one problem at a time. Each challenge contains a "Briefing" (a real-world user story), "Regeln" (the specific requirements, adapted from ERM-ueb_01.pdf), and a "Differenzierung" block with direct anchor links back to the main script for help. This promotes self-directed learning and competency. -->
+<!-- Visualization & Content Choices:
+    - Task B (Kino) -> Re-skinned as "Streamix" (Netflix-Clone).
+    - Task D (Wald) -> Re-skinned as "UrbanMove" (E-Scooter-App). This is a 1:1 translation of the logic (Tree -> Scooter, Species -> Model, Measurement -> Ride_Log).
+    - Task C (Plätzchen) -> Re-skinned as "Gastro-Hero" (Meal-Kit-App).
+    - Task A (Schule) -> Dropped, as 'Schule' is the main *example* in the script. Replaced with "Fit-Track" as a clearer warm-up.
+    - Interaction: JS-powered tabs to switch between challenges.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <nav class="container mx-auto flex max-w-6xl items-center justify-between p-4">
+        <h1 class="text-xl font-bold text-blue-600">ERM-Challenges</h1>
+        <a href="../db-basics.html" class="text-sm font-medium text-stone-600 hover:text-blue-600">&larr; Zurück zum Skript</a>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto mt-8 max-w-5xl p-4 md:p-8">
+
+    <!-- Hero -->
+    <section id="hero" class="mb-12">
+        <h2 class="mb-4 text-4xl font-bold tracking-tight text-stone-800 md:text-5xl">Praxis-Mission: ER-Modellierung</h2>
+        <p class="mt-4 text-lg text-stone-700">Du hast die Theorie im <a href="../db-basics.html" class="font-medium text-blue-600 hover:underline">Skript</a> verstanden? Jetzt geht's an die Praxis.</p>
+        <p class="mt-2 text-lg text-stone-700">Hier sind einige Aufgaben. Deine Mission: Übersetze die Anforderungen in ein sauberes ER-Modell (UML-Notation).</p>
+        <div class="mt-4 flex flex-wrap items-center gap-6">
+            <div class="flex flex-wrap items-center gap-3">
+                <strong class="text-sm text-stone-800">Weitere Infoquellen:</strong>
+                <a href="https://de.wikipedia.org/wiki/Entity-Relationship-Modell" target="_blank" rel="noopener" class="text-sm font-medium text-blue-600 hover:underline">Wikipedia: ER‑Modell</a>
+                <a href="https://youtu.be/I-ctLA--THs?si=bwqPweCqinCLQ2Y2" class="text-sm font-medium text-blue-600 hover:text-blue-600 hover:underline" role="button" aria-label="Video (Platzhalter)" title="Öffnet ein Video zu ER-Modell">Video ER-Modell</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <strong class="text-sm text-stone-800">Tools:</strong>
+                <a href="https://app.diagrams.net/" target="_blank" rel="noopener" class="text-sm font-medium text-blue-600 hover:underline">draw.io / diagrams.net</a>
+                <span class="text-sm text-stone-600">(Tipp: Online-Tool zum Zeichnen von ER‑Modellen)</span>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Challenges Section -->
+    <section id="challenges">
+        <!-- Tabs Navigation -->
+        <div class="mb-6 flex flex-wrap border-b border-stone-300">
+            <button class="challenge-btn active flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c1">Challenge 1: Instakram</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c2">Challenge 2: Kino</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c3">Challenge 3: Pokédex-Basis</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c4">Challenge 4: Pokédex-Liga</button>
+        </div>
+
+        <!-- Challenge Content -->
+        <div class="rounded-lg bg-white shadow-lg">
+            <!-- Challenge 1: Instakram -->
+            <div id="content-c1" class="challenge-content p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 1: "Instakram"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust die Core-Features von Instagram nach. Im Zentrum stehen User, Posts, Kommentare, Likes und natürlich Follower.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Ein <strong>User</strong> kann mehrere <strong>Posts</strong> erstellen. Ein Post gehört genau einem User.</li>
+                    <li>Ein <strong>User</strong> kann viele <strong>Posts</strong> "liken". Ein <strong>Post</strong> kann von vielen <strong>Usern</strong> "geliked" werden.</li>
+                    <li>Ein <strong>User</strong> kann viele <strong>Kommentare</strong> schreiben. Ein <strong>Post</strong> kann viele <strong>Kommentare</strong> haben.</li>
+                    <li>Ein <strong>Kommentar</strong> gehört immer zu *genau einem* <strong>User</strong> UND *genau einem* <strong>Post</strong>.</li>
+                    <li>(Die Knifflige): Ein <strong>User</strong> kann vielen anderen <strong>Usern</strong> folgen. Ein <strong>User</strong> kann von vielen anderen <strong>Usern</strong> gefolgt werden.</li>
+                </ul>
+
+
+                <!-- LÖSUNG C1 -->
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c1" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c1" data-pass="pass-c1">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c1" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c1" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <object type="image/svg+xml" data="assets/instakram.svg"></object>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Challenge 2: Kino -->
+            <div id="content-c2" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 2: "Kino"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du designst das System für eine große Kinokette, um deren Standorte, Säle und das laufende Programm zu verwalten. (Basiert auf PDF-Aufgabe B).</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Ein <strong>Ort</strong> (z.B. "Berlin") hat mehrere <strong>Kinos</strong>. Ein Kino ist aber in genau einem Ort.</li>
+                    <li>Ein <strong>Kino</strong> (z.B. "CineStar Potsdamer Platz") hat mehrere <strong>Kinosäle</strong>.</li>
+                    <li>Ein <strong>Film</strong> (z.B. "Dune 2") kann in vielen <strong>Kinos</strong> gezeigt werden.</li>
+                    <li>Ein <strong>Kino</strong> kann viele <strong>Filme</strong> zeigen. (Vorsicht, Falle! Wie löst man das sauber auf?)</li>
+                    <li>Eine <strong>Vorstellung</strong> (der eigentliche "Event") ist die Vorführung von *genau einem* <strong>Film</strong> in *genau einem* <strong>Saal</strong> zu einem bestimmten <strong>Datum/Uhrzeit</strong>.</li>
+                    <li>Jeder <strong>Saal</strong> hat Attribute, die du mitspeichern sollst: `Name` (z.B. "Saal 8"), `Sitzplätze` (z.B. 250) und `Leinwandgröße_m2` (z.B. 50).</li>
+                </ul>
+
+
+                <!-- LÖSUNG C2 -->
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c2" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c2" data-pass="pass-c2">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c2" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c2" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">Die Kette `Ort &rarr; Kino &rarr; Saal` ist 1:n. Die `Vorstellung` ist die Zwischentabelle, die `Film` und `Saal` (nicht `Kino`!) verbindet und das Datum/die Uhrzeit speichert.</p>
+                        <object type="image/svg+xml" data="assets/cinema.svg"></object>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Challenge 3: Pokédex-Basis -->
+            <div id="content-c3" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 3 (Hard): "Pokédex-Basis"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du bist Professor Eich! Du baust die Basis-Datenbank für den Pokédex. Es geht um die Pokémon-Spezies, ihre Typen und Attacken.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Eine <strong>Spezies</strong> (z.B. "Bisasam", "Pikachu") hat eine Pokédex-Nummer und einen Namen.</li>
+                    <li>Jede <strong>Spezies</strong> gehört zu (mindestens) einem <strong>Typ</strong> (z.B. "Pflanze", "Elektro").</li>
+                    <li>Ein <strong>Typ</strong> kann zu vielen <strong>Spezies</strong> gehören. (z.B. "Flug" bei "Glurak" und "Taubsi").</li>
+                    <li>Eine <strong>Spezies</strong> kann mehrere <strong>Attacken</strong> lernen.</li>
+                    <li>Eine <strong>Attacke</strong> (z.B. "Tackle", "Donnerblitz") kann von vielen <strong>Spezies</strong> gelernt werden.</li>
+                    <li>Jede <strong>Attacke</strong> hat aber *genau einen* <strong>Typ</strong> (z.B. "Tackle" ist Typ "Normal", "Donnerblitz" ist Typ "Elektro").</li>
+                    <li>(Bonus): Eine <strong>Spezies</strong> kann sich zu einer anderen <strong>Spezies</strong> entwickeln (z.B. "Pikachu" &rarr; "Raichu").</li>
+                </ul>
+
+                
+
+                <!-- LÖSUNG C3 -->
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c3" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c3" data-pass="pass-c3">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c3" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c3" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">Zwei m:n-Beziehungen (`Spezies_Typ`, `Lernbare_Attacken`) und eine 1:n-Beziehung (`Attacke` &rarr; `Typ`).</p>
+                        <object type="image/svg+xml" data="assets/pokemon.svg"></object>
+                        <p class="mt-4 text-sm text-stone-600"><strong>Bonus (Entwicklung):</strong> Die Entität `Spezies` hat einen Fremdschlüssel `entwickelt_aus_id` (1:n), der auf ihre *eigene* `id`-Spalte zeigt (Self-Join).</p>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Challenge 4: Pokédex-Liga -->
+            <div id="content-c4" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 4 (Profi): "Pokédex-Liga"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust auf Challenge 3 auf. Jetzt kommen die Trainer, die individuellen Pokémon und die Arenen ins Spiel.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>(Basis): Du brauchst die Entität <strong>Trainer</strong> (z.B. "Ash", "Misty").</li>
+                    <li>Ein <strong>Trainer</strong> kann viele <strong>Pokémon</strong> besitzen (seine "individuellen" Pokémon im Team).</li>
+                    <li>Ein individuelles <strong>Pokémon</strong> gehört aber zu *genau einem* <strong>Trainer</strong>.</li>
+                    <li>Jedes individuelle <strong>Pokémon</strong> ist von *genau einer* <strong>Spezies</strong> (aus Challenge 3).</li>
+                    <li>(Arena): Du brauchst die Entität <strong>Arena</strong> (z.B. "Marmoria City Arena").</li>
+                    <li>Jede <strong>Arena</strong> hat *genau einen* <strong>Trainer</strong> als <strong>Arenaleiter</strong>. Ein Trainer kann nur *eine* Arena leiten.</li>
+                    <li>(Orden): Ein <strong>Trainer</strong> kann viele <strong>Orden</strong> von verschiedenen <strong>Arenen</strong> gewinnen.</li>
+                    <li>Eine <strong>Arena</strong> kann ihren <strong>Orden</strong> an viele <strong>Trainer</strong> vergeben haben.</li>
+                </ul>
+
+                
+
+                <!-- LÖSUNG C4 -->
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c4" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c4" data-pass="pass-c4">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c4" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c4" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <p class="mb-4 text-sm text-stone-600">`Trainer` ist die zentrale Entität. `Trainer` &harr; `Arena` (Leiter) ist 1:1. `Trainer` &harr; `Arena` (Orden) ist m:n. `Pokemon` (individuell) ist die 1:n-Schnittstelle zu `Trainer` und `Spezies`.</p>
+                        <object type="image/svg+xml" data="assets/pokemon-extended.svg"></object>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="mt-16 border-t border-stone-200 bg-stone-200 p-8 text-center">
+    <p class="text-sm text-stone-600">Diese Challenges basieren auf den Aufgaben aus "ERM-ueb_01.pdf" und sind eine Ergänzung zum <a href="db_basics_spa.html" class="font-medium text-blue-600 hover:underline">Interaktiven Skript</a>.</p>
+</footer>
+
+    <script src="../js/common.js"></script>
+    <script src="../js/challenges.js"></script>
+</body>
+</html>
+

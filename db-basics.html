@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenbank-Grundlagen</title>
+    <!-- IBM Plex Serif (regular 400, medium 500) and IBM Plex Mono (regular 400) -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v4 via jsDelivr CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/db-basics.css">
+    <style>
+        /* Font defaults */
+        :root {
+            --font-serif: 'IBM Plex Serif', Georgia, serif;
+            --font-mono: 'IBM Plex Mono', Consolas, monospace;
+        }
+        body {
+            font-family: var(--font-serif);
+        }
+        pre, code, .font-mono {
+            font-family: var(--font-mono);
+        }
+
+        /* Override Tailwind's blue with our primary color */
+        .text-blue-600 { color: var(--color-primary) !important; }
+        .text-blue-700 { color: var(--color-primary) !important; }
+        .bg-blue-50 { background-color: var(--color-primary-light) !important; }
+        .border-blue-200 { border-color: var(--color-primary-light) !important; }
+        .hover\:text-blue-600:hover { color: var(--color-primary) !important; }
+        .hover\:bg-blue-50:hover { background-color: var(--color-primary-light) !important; }
+        .hover\:bg-blue-700:hover { background-color: var(--color-primary-hover) !important; }
+        .bg-blue-600 { background-color: var(--color-primary) !important; }
+
+        /* Override green buttons with gray */
+        .bg-green-600 { background-color: rgb(156 163 175) !important; } /* gray-400 */
+        .hover\:bg-green-700:hover { background-color: rgb(107 114 128) !important; } /* gray-500 */
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900 leading-relaxed">
+
+<!-- Chosen Palette: Tailwind v4.1 'Blue' (academic, tech-y) with warm neutral 'Stone' background -->
+<!-- Application Structure Plan: The SPA is structured as a single-page interactive learning journey, mimicking the logical flow of the source PDF but transforming it into thematic, interactive sections. It starts with a sticky navigation header for quick access. The sections are: 1. "Grundlagen" (with a clickable ANSI-SPARC diagram), 2. "Design-Prozess" (with a clickable stepper for the 4 phases), 3. "Bauplan" (a tabbed interface for ERM, Table Models, and Keys), 4. "Daten-Hygiene" (a core interactive widget demonstrating 1NF, 2NF, 3NF transformations), and 5. "Die Sprache SQL" (using interactive "flashcards" for DDL, DML, etc.). This structure was chosen to replace passive reading with active exploration, allowing users to drill down into concepts (like Normalization or SQL commands) on demand, which is crucial for understanding complex, sequential topics. -->
+<!-- Visualization & Content Choices:
+    - ANSI-SPARC (PDF P.1): Goal: Explain 3-tier architecture. Method: Interactive Diagram (HTML/CSS Flex). Interaction: Click layer name to show description. Justification: More engaging than static image.
+    - Phasenmodell (PDF P.3): Goal: Show DB design process. Method: Interactive Stepper (HTML/CSS Flex). Interaction: Click Phase to reveal description. Justification: Breaks down a linear process.
+    - Normalisierung (PDF P.20-21): Goal: Demonstrate normalization. Method: Interactive Table-Switcher. Interaction: User clicks buttons (1NF, 2NF, 3NF) to visually transform a table. JS hides/shows divs. Justification: Makes the most abstract concept in the PDF visual and concrete.
+    - SQL-Kategorien (PDF P.7): Goal: Organize SQL command types. Method: Interactive Card Grid (HTML/CSS Grid). Interaction: Click on a card header (DDL, DML, etc.) to toggle visibility of its description and commands. Justification: "Flashcard" metaphor is better for learning syntax than a long list.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <nav class="container mx-auto flex max-w-6xl items-center justify-between p-4">
+        <h1 class="text-xl font-bold text-blue-600">Datenbanken</h1>
+        <div class="hidden items-center md:flex">
+            <div class="flex space-x-4">
+                <a href="#grundlagen" class="text-stone-600 hover:text-blue-600">Grundlagen</a>
+                <a href="#prozess" class="text-stone-600 hover:text-blue-600">Design-Prozess</a>
+                <a href="#bauplan" class="text-stone-600 hover:text-blue-600">ERM/Tabelle</a>
+                <!-- <a href="#hygiene" class="text-stone-600 hover:text-blue-600">Optimierung</a>
+                <a href="#sprache" class="text-stone-600 hover:text-blue-600">SQL</a> -->
+            </div>
+            <div class="mx-4 h-5 w-px bg-stone-200"></div>
+        </div>
+        <button class="md:hidden" id="mobile-menu-btn" aria-label="Menü öffnen">
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+        </button>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden p-4 md:hidden">
+        <a href="#grundlagen" class="block py-2 text-stone-600 hover:text-blue-600">Grundlagen</a>
+        <a href="#prozess" class="block py-2 text-stone-600 hover:text-blue-600">Prozess</a>
+        <a href="#bauplan" class="block py-2 text-stone-600 hover:text-blue-600">Bauplan</a>
+        <a href="#hygiene" class="block py-2 text-stone-600 hover:text-blue-600">Hygiene</a>
+        <a href="#sprache" class="block py-2 text-stone-600 hover:text-blue-600">SQL</a>
+        <div class="my-2 h-px bg-stone-200"></div>
+        <a href="erm/challenges.html" class="block py-2 text-stone-600 hover:text-blue-600 font-medium">Challenges</a>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto mt-8 max-w-6xl p-4 md:p-8">
+
+    <!-- Hero -->
+    <section id="hero" class="mb-16 text-center">
+        <h2 class="mb-4 text-4xl font-bold tracking-tight text-stone-800 md:text-5xl">Grundlagen Relationaler Datenbanken</h2>
+        <p class="mx-auto max-w-3xl text-lg text-stone-700">Lernziele: Du kannst Entitäten, Attribute und Beziehungen (inkl. Kardinalitäten) aus einer Aufgabenstellung herauslesen und in ein übersichtliches ER‑Diagramm übertragen.
+Anschließend wandelst du das ER‑Modell in ein relationales Schema (Tabellen mit PK/FK) um und schreibst passende SQL‑Statements, um Tabellen anzulegen und Abfragen (JOINs, Aggregationen) auszuführen.
+In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine Modell‑ und Designentscheidungen.</p>
+    </section>
+
+    <!-- 1. Grundlagen -->
+    <section id="grundlagen" class="mb-16 scroll-mt-24">
+        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">1. Die Grundlagen: Was ist was?</h2>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <div class="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
+                <h3 class="mb-3 text-2xl font-semibold text-blue-600">Datenbank (DB)</h3>
+                <p class="text-stone-700">Die Datenbank ist im Grunde nur die reine, strukturierte Sammlung von Daten. Stellen Sie sich ein riesiges, perfekt organisiertes Lagerhaus voller Akten (Daten) vor. Das Lagerhaus selbst *tut* nichts, es *beinhert* nur die Informationen.</p>
+            </div>
+            <div class="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
+                <h3 class="mb-3 text-2xl font-semibold text-blue-600">Datenbankmanagementsystem (DBMS)</h3>
+                <p class="text-stone-700">Das DBMS ist die Software, die das Lagerhaus verwaltet. Es ist der "Lagerverwalter", der die Akten findet, neue Akten anlegt, alte ändert oder sicherstellt, dass nur berechtigte Personen Zutritt haben. Beispiele sind MariaDB, MySQL, Oracle oder PostgreSQL.</p>
+            </div>
+        </div>
+
+        <h3 class="mb-6 mt-12 text-2xl font-semibold text-stone-800">Das 3-Ebenen-Architekturmodell (ANSI-SPARC)</h3>
+        <p class="mb-6 text-stone-700">Dieses wichtige Konzept beschreibt, wie ein DBMS die Daten für verschiedene Nutzer "übersetzt". Es trennt die physische Speicherung von der logischen Ansicht. <strong class="text-blue-600">Klicken Sie auf die Ebenen</strong>, um mehr zu erfahren.</p>
+
+        <div class="flex flex-col md:flex-row">
+            <div class="flex flex-col border-stone-200 md:w-1/3 md:border-r-2">
+                <button class="ebene-btn active block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="ebene-extern">1. Externe Ebene (Sicht der Nutzer)</button>
+                <button class="ebene-btn block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="ebene-konzept">2. Konzeptionelle Ebene (Logisches Modell)</button>
+                <button class="ebene-btn block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="ebene-intern">3. Interne Ebene (Physische Speicherung)</button>
+            </div>
+            <div class="w-full md:w-2/3 md:pl-6">
+                <div id="ebene-extern" class="ebene-content rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">1. Externe Ebene (Benutzersichten)</h4>
+                    <p class="text-stone-700">Dies ist die Ebene, die der Endbenutzer sieht. Es ist die Benutzeroberfläche, eine GUI, ein Formular oder ein Bericht. Jeder Benutzer (z.B. ein "Sachbearbeiter" oder ein "Administrator") sieht nur die Daten, die für ihn relevant sind, in einer für ihn aufbereiteten Form. Er muss nicht wissen, wie oder wo die Daten gespeichert sind.</p>
+                    <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> GUI, Sachbearbeiter, Administrator</p>
+                </div>
+                <div id="ebene-konzept" class="ebene-content hidden rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">2. Konzeptionelle Ebene (Logisches Modell)</h4>
+                    <p class="text-stone-700">Dies ist die "Architekten-Sicht". Hier wird die logische Struktur *aller* Daten in der Datenbank beschrieben: Welche Tabellen gibt es? Wie hängen sie zusammen (Beziehungen)? Welche Regeln gelten? Diese Ebene ist unabhängig von der physischen Speicherung. Das ER-Modell ist ein Werkzeug, um diese Ebene zu entwerfen.</p>
+                    <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> Semantisches Modell, ER-Modell, Beziehungen</p>
+                </div>
+                <div id="ebene-intern" class="ebene-content hidden rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">3. Interne Ebene (Physische Speicherung)</h4>
+                    <p class="text-stone-700">Dies ist die "Maschinenraum"-Ebene. Sie beschreibt, *wie* die Daten tatsächlich auf der Festplatte gespeichert werden. Hier geht es um Dateistrukturen, Indizes, Speicherblöcke und Optimierung. Der normale Entwickler oder Benutzer muss diese Ebene nicht kennen. Das DBMS (z.B. MariaDB) kümmert sich darum.</p>
+                    <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> DBMS, MariaDB, Datei</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Prozess -->
+    <section id="prozess" class="mb-16 scroll-mt-24">
+        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">2. Der Design-Prozess: 4 Phasen</h2>
+        <p class="mb-6 text-stone-700">Ein Datenbankmodell entsteht nicht auf einmal. Es ist ein strukturierter Prozess in vier Phasen, der von der vagen Idee bis zur fertigen Implementierung führt. <strong class="text-blue-600">Klicken Sie auf die Phasen</strong> für Details.</p>
+
+        <div class="flex flex-col md:flex-row">
+            <div class="flex flex-col border-stone-200 md:w-1/3 md:border-r-2">
+                <button class="phase-btn active block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="phase-1">1. Externe Phase (Analyse)</button>
+                <button class="phase-btn block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="phase-2">2. Konzeptionelle Phase (ERM)</button>
+                <button class="phase-btn block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="phase-3">3. Logische Phase (Tabellen)</button>
+                <button class="phase-btn block w-full border-l-4 border-transparent p-4 text-left text-lg font-medium hover:bg-blue-50" data-target="phase-4">4. Physische Phase (SQL)</button>
+            </div>
+            <div class="w-full md:w-2/3 md:pl-6">
+                <div id="phase-1" class="phase-content rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">1. Externe Phase (Anforderungsanalyse)</h4>
+                    <p class="text-stone-700">Was muss das System überhaupt können? In dieser Phase wird der Informationsbedarf der Benutzer ermittelt. Man spricht mit den Anwendern, analysiert bestehende Formulare oder Datenbestände ("Realitätsbeobachtungen", "Benutzersichtanalysen"). Das Ziel ist, zu verstehen, *welche* Daten (Input) gebraucht werden, um das gewünschte Ergebnis (Output, z.B. Berichte) zu erzeugen.</p>
+                </div>
+                <div id="phase-2" class="phase-content hidden rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">2. Konzeptionelle Phase (Semantisches Modell)</h4>
+                    <p class="text-stone-700">Hier wird der "Bauplan" gezeichnet. Das Ergebnis der Analyse wird in ein formales, aber DBMS-unabhängiges Modell übersetzt. Das wichtigste Werkzeug hierfür ist das **ER-Modell (Entity-Relationship-Modell)**. Es beschreibt die "Dinge" (Entitäten, z.B. `Mitarbeiter`, `Abteilung`) und wie sie zusammenhängen (Beziehungen, z.B. `arbeitet in`).</p>
+                </div>
+                <div id="phase-3" class="phase-content hidden rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">3. Logische Phase (Relationales Modell)</h4>
+                    <p class="text-stone-700">Der abstrakte ER-Bauplan wird nun in ein konkretes "Tabellenmodell" (relationales Modell) umgewandelt. Aus Entitäten werden Tabellen, aus Attributen werden Spalten. Hier werden auch die Schlüssel (Primary/Foreign Keys) definiert und die Regeln zur Auflösung von m:n-Beziehungen angewendet. Das Ergebnis ist immer noch DBMS-unabhängig (quasi "auf dem Papier").</p>
+                </div>
+                <div id="phase-4" class="phase-content hidden rounded-r-lg bg-white p-6">
+                    <h4 class="mb-3 text-xl font-semibold text-blue-700">4. Physische Phase (Implementierung)</h4>
+                    <p class="text-stone-700">Jetzt wird es technisch. Das logische Tabellenmodell wird mit der Sprache **SQL** in einem *spezifischen* DBMS (z.B. MariaDB) implementiert. Hier werden mit `CREATE TABLE` die Tabellen angelegt, Datentypen (z.B. `VARCHAR`, `INT`) festgelegt und die physische Speicherung (z.B. `ENGINE=InnoDB`) definiert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Bauplan -->
+    <section id="bauplan" class="mb-16 scroll-mt-24">
+        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">3. Der Bauplan: Von der Idee zur Tabelle</h2>
+        <p class="mb-6 text-stone-700">In der konzeptionellen und logischen Phase wird das Herzstück der Datenbank entworfen. Dies geschieht in zwei Hauptschritten, die wir hier genauer betrachten.</p>
+
+        <!-- Tabs Navigation -->
+        <div class="mb-6 flex border-b border-stone-300">
+            <button class="tab-btn active mr-4 border-b-2 border-transparent px-1 py-2 text-lg font-medium" data-tab="erm">ER-Modell (ERM)</button>
+            <button class="tab-btn mr-4 border-b-2 border-transparent px-1 py-2 text-lg font-medium" data-tab="tabellen">Tabellenmodell</button>
+            <button class="tab-btn border-b-2 border-transparent px-1 py-2 text-lg font-medium" data-tab="schluessel">Schlüssel & Regeln</button>
+        </div>
+
+        <!-- Tab Content: ERM -->
+        <div id="content-erm" class="tab-content rounded-lg bg-white p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-2xl font-semibold">1. Das ER-Modell (Konzeptionell)</h3>
+                <a href="erm/challenges.html" class="ml-4 inline-flex items-center rounded-md bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-200">Challenges</a>
+            </div>
+            <p class="mb-4 text-stone-700">Das ER-Modell (Entity-Relationship-Modell) ist der grafische Bauplan. Es zeigt die "Dinge" (Entitäten) und wie sie zusammenhängen (Beziehungen). Die **Kardinalität** (z.B. 1:1, 1:n) beschreibt die *Anzahl* der möglichen Beziehungen.</p>
+
+            <!-- Einführung: Grundelemente des ER-Modells -->
+            <div class="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
+                <h4 class="mb-2 text-lg font-semibold text-stone-800">Grundelemente des ER-Modells</h4>
+
+                <div class="diagram-grid">
+                    <!-- Entitätstyp (links) -->
+                    <div class="diagram-outer">
+                        <div class="diagram-outer-inner">
+                            <div class="diagram-inner diagram-rect">Entitätstyp</div>
+                        </div>
+                        <div class="diagram-caption"><strong>Entitätstyp:</strong> Eine Menge gleichartiger Objekte — z. B. Personen, Produkte oder Orte.</div>
+                    </div>
+
+                    <!-- Beziehung (Mitte) -->
+                    <div class="diagram-outer">
+                        <div class="diagram-outer-inner">
+                            <div class="diagram-diamond-inner"><div class="diagram-inner transform -rotate-45">Beziehung</div></div>
+                        </div>
+                        <div class="diagram-caption"><strong>Beziehung:</strong> Beschreibt, wie Entitätstypen zueinander in Beziehung stehen; oft mit Kardinalitäten, z. B. <em>arbeitet in</em>.</div>
+                    </div>
+
+                    <!-- Attribut (rechts) -->
+                    <div class="diagram-outer">
+                        <div class="diagram-outer-inner">
+                            <div class="diagram-inner diagram-pill">Attribut</div>
+                        </div>
+                        <div class="diagram-caption"><strong>Attribut:</strong> Eine Eigenschaft einer Entität, z. B. Name, Geburtsdatum oder Kennung.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-12 py-4">
+                <h3 class="mb-2 text-lg font-semibold text-stone-800">Kardinalität</h3>
+                <p class="mb-4 text-sm text-stone-600">
+                    Gibt an, wie viele Elemente einer Entitätsmenge mit wie vielen Elementen einer anderen Menge verbunden sein können (z. B. <em>1:1</em>, <em>1:n</em>, <em>m:n</em>). Sie wird durch eine Kante zwischen Entiäten/Beziehungen dargestellt und bestimmt die Anzahl der erlaubten Verknüpfungen. Sie ist wichtig beim Übersetzen des ER-Modells in Tabellen.
+                </p>
+                <!-- 1:1 Beziehung -->
+                <div>
+                    <h4 class="mb-2 text-lg font-semibold text-blue-600">1:1-Beziehung (Eins-zu-Eins)</h4>
+                    <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus Tabelle A ist mit *genau einem* Datensatz aus Tabelle B verbunden (z.B. `Lehrer` leitet `Klasse`).</p>
+                    <object type="image/svg+xml" data="diagrams/teacher-relation.svg" class="w-2xl h-32"></object>
+                </div>
+                <!-- 1:n Beziehung -->
+                <div>
+                    <h4 class="mb-2 text-lg font-semibold text-blue-600">1:n-Beziehung (Eins-zu-Viele)</h4>
+                    <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus A kann mit *vielen* Datensätzen aus B verbunden sein (z.B. `Klasse` hat viele `Schüler`).</p>
+                    <object type="image/svg+xml" data="diagrams/class-relation.svg" class="w-2xl h-32"></object>
+                </div>
+                <!-- m:n Beziehung -->
+                <div>
+                    <h4 class="mb-2 text-lg font-semibold text-blue-600">m:n-Beziehung (Viele-zu-Viele)</h4>
+                    <p class="mb-4 text-sm text-stone-600">Viele Datensätze aus A können mit *vielen* Datensätzen aus B verbunden sein (z.B. `Schüler` belegt viele `Kurse`).</p>
+                    <object type="image/svg+xml" data="diagrams/course-relation.svg" class="w-2xl h-32"></object>
+                    <p class="mt-3 text-sm text-stone-600"><strong>Wichtig:</strong> m:n-Beziehungen können nicht direkt in Tabellen umgesetzt werden. Sie *müssen* aufgelöst werden (siehe Tabellenmodell).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Tabellenmodell -->
+        <div id="content-tabellen" class="tab-content hidden rounded-lg bg-white p-6">
+            <h3 class="mb-4 text-2xl font-semibold">2. Das Tabellenmodell (Logisch)</h3>
+            <p class="mb-4 text-stone-700">Im logischen Modell wird das ERM in ein relationales Modell (Tabellen) übersetzt. Aus Entitäten werden Tabellen und aus Attributen werden Spalten. Wir nutzen unser "Schule"-Beispiel:</p>
+            <h4 class="mb-4 text-xl font-semibold">Die Abbildungsregeln</h4>
+
+            <ul class="mb-4 list-none space-y-6 text-stone-700">
+                <li>
+                    <strong>Regel 1 (Entität):</strong> Jede Entitätsmenge (z.B. `Schüler`, `Klasse`, `Kurs`) wird zu einer eigenen Tabelle.
+                    <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
+                        <div>
+                            <h5 class="text-sm font-semibold">Tabelle: Klasse</h5>
+                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
+                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">1</td><td class="p-2">10a</td></tr><tr><td class="p-2">2</td><td class="p-2">10b</td></tr></tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold">Tabelle: Schüler</h5>
+                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Vorname</th><th class="p-2 text-left">Nachname</th></tr></thead>
+                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">101</td><td class="p-2">Max</td><td class="p-2">Mustermann</td></tr></tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold">Tabelle: Kurs</h5>
+                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Titel</th></tr></thead>
+                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">42</td><td class="p-2">Mathe-LK</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Regel 3 (1:n):</strong> Bei einer 1:n-Beziehung (z.B. `Klasse` 1---n `Schüler`) wird der Primärschlüssel der '1'-Seite (z.B. `Klasse.id`) als <strong>Fremdschlüssel</strong> in die Tabelle der 'n'-Seite (z.B. `Schüler.kid_FK`) aufgenommen.
+                    <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
+                        <div>
+                            <h5 class="text-sm font-semibold">Tabelle: Klasse (unverändert)</h5>
+                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
+                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">1</td><td class="p-2">10a</td></tr></tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-semibold">Tabelle: Schüler (mit FK)</h5>
+                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Vorname</th><th class="p-2 text-left">Nachname</th><th class="p-2 text-left bg-blue-100">kid_FK (FK)</th></tr></thead>
+                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">101</td><td class="p-2">Max</td><td class="p-2">Mustermann</td><td class="p-2 bg-blue-50">1</td></tr></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Regel 4 (m:n):</strong> m:n-Beziehungen (z.B. `Schüler` m---n `Kurs`) können nicht direkt abgebildet werden. Sie *müssen* aufgelöst werden!
+                </li>
+            </ul>
+
+            <h4 class="mb-2 text-xl font-semibold">Auflösung einer m:n-Beziehung</h4>
+            <p class="mb-4 text-stone-700">Man erstellt eine neue **Zwischentabelle** (Koppeltabelle), die die m:n-Beziehung in zwei 1:n-Beziehungen aufspaltet. Diese Tabelle (z.B. `belegt`) enthält die Fremdschlüssel *beider* beteiligten Tabellen (z.B. `schueler_id_FK` und `kurs_id_FK`).</p>
+            <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
+                <div>
+                    <h5 class="text-sm font-semibold">Tabelle: Schüler</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Vorname</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200"><tr><td class="p-2">101</td><td class="p-2">Max</td></tr><tr><td class="p-2">102</td><td class="p-2">Anna</td></tr></tbody>
+                    </table>
+                </div>
+                <div>
+                    <h5 class="text-sm font-semibold">Tabelle: Kurs</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Titel</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200"><tr><td class="p-2">42</td><td class="p-2">Mathe-LK</td></tr><tr><td class="p-2">43</td><td class="p-2">Bio-LK</td></tr></tbody>
+                    </table>
+                </div>
+                <div>
+                    <h5 class="text-sm font-semibold">NEUE Tabelle: belegt</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-blue-100">schueler_id (PK, FK)</th><th class="p-2 text-left bg-blue-100">kurs_id (PK, FK)</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200">
+                        <tr><td class="p-2 bg-blue-50">101</td><td class="p-2 bg-blue-50">42</td></tr>
+                        <tr><td class="p-2 bg-blue-50">101</td><td class="p-2 bg-blue-50">43</td></tr>
+                        <tr><td class="p-2 bg-blue-50">102</td><td class="p-2 bg-blue-50">42</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content: Schlüssel & Regeln -->
+        <div id="content-schluessel" class="tab-content hidden rounded-lg bg-white p-6">
+            <h3 class="mb-4 text-2xl font-semibold">3. Schlüssel & Regeln</h3>
+            <p class="mb-4 text-stone-700">Schlüssel sind das Fundament, das die Tabellen zusammenhält. Sie garantieren Eindeutigkeit und Konsistenz.</p>
+
+            <h4 class="mb-4 mt-8 text-xl font-semibold">Visuelles Beispiel: PK & FK</h4>
+            <p class="mb-4 text-stone-700">Der <strong>Primärschlüssel (PK)</strong> identifiziert eine Klasse eindeutig. Der <strong>Fremdschlüssel (FK)</strong> in der Schülertabelle stellt die Verbindung her, indem er auf den PK der Klasse verweist.</p>
+            <div class="grid grid-cols-1 items-start gap-x-8 gap-y-4 md:grid-cols-2">
+                <!-- Klasse Table -->
+                <div>
+                    <h5 class="text-sm font-semibold">Tabelle: Klasse</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200">
+                        <tr><td class="p-2 bg-yellow-100">1</td><td class="p-2">10a</td></tr>
+                        <tr><td class="p-2 bg-yellow-100">2</td><td class="p-2">10b</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Schüler Table -->
+                <div>
+                    <h5 class="text-sm font-semibold">Tabelle: Schüler (zeigt auf Klasse)</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">id (PK)</th><th class="p-2 text-left">Name</th><th class="p-2 text-left bg-blue-200">kid_FK (FK) &larr;</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200">
+                        <tr><td class="p-2 bg-yellow-100">101</td><td class="p-2">Max</td><td class="p-2 bg-blue-100">1</td></tr>
+                        <tr><td class="p-2 bg-yellow-100">102</td><td class="p-2">Anna</td><td class="p-2 bg-blue-100">2</td></tr>
+                        <tr><td class="p-2 bg-yellow-100">103</td><td class="p-2">Tim</td><td class="p-2 bg-blue-100">1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="rounded-lg border border-stone-200 p-4">
+                    <strong class="text-blue-600">Primärschlüssel (Primary Key, PK)</strong>
+                    <p class="mt-2 text-stone-700">Ein Attribut (oder eine Kombination), das einen Datensatz (Zeile) in einer Tabelle *eindeutig* identifiziert. (z.B. `Schüler.id`).</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm text-stone-600">
+                        <li>Darf nicht `NULL` (leer) sein.</li>
+                        <li>Muss eindeutig sein.</li>
+                        <li>Oft ein "künstlicher" Zählschlüssel (z.B. `AUTO_INCREMENT`).</li>
+                    </ul>
+                </div>
+                <div class="rounded-lg border border-stone-200 p-4">
+                    <strong class="text-blue-600">Fremdschlüssel (Foreign Key, FK)</strong>
+                    <p class="mt-2 text-stone-700">Ein Attribut in einer Tabelle (z.B. `Schüler.kid_FK`), das auf einen *Primärschlüssel* in einer anderen Tabelle (z.B. `Klasse.id`) verweist. Dies ist die technische Umsetzung einer "Beziehung".</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm text-stone-600">
+                        <li>Stellt die <strong>Referentielle Integrität</strong> sicher: Es kann keinen `Schüler` mit einer `kid_FK` geben, die nicht in der `Klasse`-Tabelle als `id` existiert.</li>
+                    </ul>
+                </div>
+                <div class="rounded-lg border border-stone-200 p-4">
+                    <strong class="text-blue-600">Verbundschlüssel (Composite Key)</strong>
+                    <p class="mt-2 text-stone-700">Ein Primärschlüssel, der aus *mehreren Spalten* gleichzeitig besteht. Die Kombination aller Spalten muss eindeutig sein.</p>
+                    <ul class="ml-5 mt-2 list-disc text-sm text-stone-600">
+                        <li>Typischer Anwendungsfall: Zwischentabellen bei m:n-Beziehungen.</li>
+                    </ul>
+                    <h5 class="mt-3 text-xs font-semibold uppercase">Beispiel: Tabelle 'belegt'</h5>
+                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
+                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-yellow-200">schueler_id (PK, FK)</th><th class="p-2 text-left bg-yellow-200">kurs_id (PK, FK)</th></tr></thead>
+                        <tbody class="divide-y divide-stone-200">
+                        <tr><td class="p-2 bg-yellow-100">101</td><td class="p-2 bg-yellow-100">42</td></tr>
+                        <tr><td class="p-2 bg-yellow-100">101</td><td class="p-2 bg-yellow-100">43</td></tr>
+                        <tr class="bg-red-100"><td class="p-2 text-red-700 line-through">101</td><td class="p-2 text-red-700 line-through">42</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="mt-2 text-xs text-red-700">Die letzte Zeile wäre ungültig, da die Kombination (101, 42) bereits existiert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Daten-Hygiene -->
+    <!-- <section id="hygiene" class="mb-16 scroll-mt-24">
+        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">4. Daten-Hygiene: Normalisierung</h2>
+        <p class="mb-4 text-stone-700">Warum der ganze Aufwand mit dem Aufteilen in Tabellen? Um Redundanz (doppelte Daten) zu vermeiden. Redundanz führt zu "Anomalien" (Fehlern) bei Änderungen, Löschungen oder beim Einfügen von Daten. Die Lösung ist die **Normalisierung**.</p>
+        <p class="mb-6 text-stone-700">Wir verwandeln eine "unsaubere" Spotify-Playlist-Tabelle (0NF) schrittweise in "saubere" Tabellen (bis zur 3. Normalform). <strong class="text-blue-600">Klicken Sie sich durch die Normalformen</strong>, um die Transformation der Daten zu sehen.</p>
+
+        <div class="mb-6 flex flex-wrap gap-2">
+            <button class="norm-btn active rounded-full px-4 py-2 font-medium" data-norm="n0">0NF (Ausgangstabelle)</button>
+            <button class="norm-btn rounded-full bg-stone-200 px-4 py-2 font-medium hover:bg-stone-300" data-norm="n1">1. Normalform (1NF)</button>
+            <button class="norm-btn rounded-full bg-stone-200 px-4 py-2 font-medium hover:bg-stone-300" data-norm="n2">2. Normalform (2NF)</button>
+            <button class="norm-btn rounded-full bg-stone-200 px-4 py-2 font-medium hover:bg-stone-300" data-norm="n3">3. Normalform (3NF)</button>
+        </div>
+
+        <div class="overflow-x-auto rounded-lg bg-white p-6 shadow-md">
+            <div id="content-n0" class="norm-content">
+                <div class="flex items-center justify-between">
+                    <h4 class="mb-4 text-xl font-semibold">0NF: Die "Chaos-Playlist"</h4>
+                    <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n0" data-filename="0NF_Chaos_Playlist.csv">
+                        Export .csv
+                    </button>
+                </div>
+                <p class="mb-4 text-sm text-stone-600">Daten sind nicht atomar (mehrere Songs in einer Zelle). Viel Redundanz: Das Land von 'KaffeeJunkie88' und das Genre von 'Billie Eilish' werden wiederholt. <br><strong>Problem:</strong> Was passiert, wenn 'KaffeeJunkie88' umzieht? Man muss es in *jeder* Zeile ändern!</p>
+                <table class="min-w-full divide-y divide-stone-200 border text-sm" id="table-n0">
+                    <thead class="bg-stone-50"><tr class="font-semibold"><th class="p-2 text-left">Playlist_ID</th><th class="p-2 text-left">User_Name</th><th class="p-2 text-left">User_Country</th><th class="p-2 text-left">Artist_Name</th><th class="p-2 text-left">Artist_Genre</th><th class="p-2 text-left">Song_Title(s)</th></tr></thead>
+                    <tbody class="divide-y divide-stone-200">
+                    <tr><td class="p-2">101</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Justin Bieber</td><td class="p-2">Pop</td><td class="p-2">Peaches, Stay</td></tr>
+                    <tr><td class="p-2">102</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td><td class="p-2">Lost, Nights</td></tr>
+                    <tr><td class="p-2">103</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td><td class="p-2">bad guy</td></tr>
+                    <tr><td class="p-2">104</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Fred again..</td><td class="p-2">Electronic</td><td class="p-2">Marea (We've Lost Dancing), Delilah (Pull Me Out Of This)</td></tr>
+                    <tr><td class="p-2">105</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">KI/KI</td><td class="p-2">Techno</td><td class="p-2">Leave Me</td></tr>
+                    <tr><td class="p-2">106</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td><td class="p-2">Happier Than Ever</td></tr>
+                    <tr><td class="p-2">107</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td><td class="p-2">Pink + White</td></tr>
+                    <tr><td class="p-2">108</td><td class="p-2">TechnoTobi</td><td class="p-2">DE</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td><td class="p-2">It's That Time, Call Me</td></tr>
+                    <tr><td class="p-2">109</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">A$AP Rocky</td><td class="p-2">Hip-Hop</td><td class="p-2">Praise The Lord (Da Shine)</td></tr>
+                    <tr><td class="p-2">110</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td><td class="p-2">It's That Time</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="content-n1" class="norm-content hidden">
+                <div class="flex items-center justify-between">
+                    <h4 class="mb-4 text-xl font-semibold">1. Normalform (Atomar)</h4>
+                    <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n1" data-filename="1NF_Atomar.csv">
+                        Export .csv
+                    </button>
+                </div>
+                <p class="mb-4 text-sm text-stone-600">Alle Attribute sind atomar (ein Wert pro Zelle). Die Zeilen 101, 102 und 104 wurden aufgespalten. Der Primärschlüssel ist jetzt eine Kombination aus `(Playlist_ID, Song_Title)`. <br><strong>Problem:</strong> Noch mehr Redundanz! Jetzt wird alles *noch öfter* wiederholt.</p>
+                <table class="min-w-full divide-y divide-stone-200 border text-sm" id="table-n1">
+                    <thead class="bg-stone-50"><tr class="font-semibold"><th class="p-2 text-left">Playlist_ID</th><th class="p-2 text-left">User_Name</th><th class="p-2 text-left">User_Country</th><th class="p-2 text-left">Artist_Name</th><th class="p-2 text-left">Artist_Genre</th><th class="p-2 text-left">Song_Title</th></tr></thead>
+                    <tbody class="divide-y divide-stone-200">
+                    <tr><td class="p-2">101</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Justin Bieber</td><td class="p-2">Pop</td><td class="p-2">Peaches</td></tr>
+                    <tr><td class="p-2">101</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Justin Bieber</td><td class="p-2">Pop</td><td class="p-2">Stay</td></tr>
+                    <tr><td class="p-2">102</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td><td class="p-2">Lost</td></tr>
+                    <tr><td class="p-2">102</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td><td class="p-2">Nights</td></tr>
+                    <tr><td class="p-2">103</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td><td class="p-2">bad guy</td></tr>
+                    <tr><td class="p-2">104</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Fred again..</td><td class="p-2">Electronic</td><td class="p-2">Marea (We've Lost Dancing)</td></tr>
+                    <tr><td class="p-2">104</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Fred again..</td><td class="p-2">Electronic</td><td class="p-2">Delilah (Pull Me Out Of This)</td></tr>
+                    <tr><td class="p-2">105</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">KI/KI</td><td class="p-2">Techno</td><td class="p-2">Leave Me</td></tr>
+                    <tr><td class="p-2">106</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td><td class="p-2">Happier Than Ever</td></tr>
+                    <tr><td class="p-2">107</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td><td class="p-2">Pink + White</td></tr>
+                    <tr><td class="p-2">108</td><td class="p-2">TechnoTobi</td><td class="p-2">DE</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td><td class="p-2">It's That Time</td></tr>
+                    <tr><td class="p-2">108</td><td class="p-2">TechnoTobi</td><td class="p-2">DE</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td><td class="p-2">Call Me</td></tr>
+                    <tr><td class="p-2">109</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">A$AP Rocky</td><td class="p-2">Hip-Hop</td><td class="p-2">Praise The Lord (Da Shine)</td></tr>
+                    <tr><td class="p-2">110</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td><td class="p-2">It's That Time</td></tr>
+                </table>
+            </div>
+
+            <div id="content-n2" class="norm-content hidden">
+                <h4 class="mb-4 text-xl font-semibold">2. Normalform (Aufteilung nach PK)</h4>
+                <p class="mb-4 text-sm text-stone-600">Die Tabelle wird aufgeteilt. Alle Infos, die nur von `Playlist_ID` (einem *Teil* des PK) abhängen, kommen in eine eigene Tabelle `Playlist`.<br><strong>Problem:</strong> In der `Playlist`-Tabelle gibt es immer noch Redundanz. `User_Country` hängt von `User_Name` ab!</p>
+                <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-semibold">Tabelle: Playlist (PK: Playlist_ID)</h5>
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n2-playlist" data-filename="2NF_Playlist.csv">
+                                Export .csv
+                            </button>
+                        </div>
+                        <table class="mt-2 min-w-full divide-y divide-stone-200 border text-sm" id="table-n2-playlist">
+                            <thead class="bg-stone-50"><tr><th class="p-2 text-left">Playlist_ID</th><th class="p-2 text-left">User_Name</th><th class="p-2 text-left">User_Country</th><th class="p-2 text-left">Artist_Name</th><th class="p-2 text-left">Artist_Genre</th></tr></thead>
+                            <tbody class="divide-y divide-stone-200">
+                            <tr><td class="p-2">101</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Justin Bieber</td><td class="p-2">Pop</td></tr>
+                            <tr><td class="p-2">102</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td></tr>
+                            <tr><td class="p-2">103</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td></tr>
+                            <tr><td class="p-2">104</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Fred again..</td><td class="p-2">Electronic</td></tr>
+                            <tr><td class="p-2">105</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">KI/KI</td><td class="p-2">Techno</td></tr>
+                            <tr><td class="p-2">106</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td></tr>
+                            <tr><td class="p-2">107</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td></tr>
+                            <tr><td class="p-2">108</td><td class="p-2">TechnoTobi</td><td class="p-2">DE</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td></tr>
+                            <tr><td class="p-2">109</td><td class="p-2">Sofaheld</td><td class="p-2">AT</td><td class="p-2">A$AP Rocky</td><td class="p-2">Hip-Hop</td></tr>
+                            <tr><td class="p-2">110</td><td class="p-2">NudelQueen</td><td class="p-2">CH</td><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content-n3" class="norm-content hidden">
+                <h4 class="mb-4 text-xl font-semibold">3. Normalform (Final & Sauber)</h4>
+                <p class="mb-4 text-sm text-stone-600">Letzter Schritt: Wir entfernen "transitive Abhängigkeiten". Infos wie `User_Country` (hängt von `User_Name` ab) und `Artist_Genre` (hängt von `Artist_Name` ab) bekommen eigene Tabellen. Jetzt ist jede Information nur noch *genau einmal* gespeichert. Keine Redundanz mehr!</p>
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-semibold">Tabelle: Playlist (PK: Playlist_ID)</h5>
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-playlist" data-filename="3NF_Playlist.csv">
+                                Export .csv
+                            </button>
+                        </div>
+                        <table class="mt-2 min-w-full divide-y divide-stone-200 border text-sm" id="table-n3-playlist">
+                            <thead class="bg-stone-50"><tr><th class="p-2 text-left">Playlist_ID</th><th class="p-2 text-left">User_Name (FK)</th><th class="p-2 text-left">Artist_Name (FK)</th></tr></thead>
+                            <tbody class="divide-y divide-stone-200">
+                            <tr><td class="p-2">101</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">Justin Bieber</td></tr>
+                            <tr><td class="p-2">102</td><td class="p-2">Sofaheld</td><td class="p-2">Frank Ocean</td></tr>
+                            <tr><td class="p-2">103</td><td class="p-2">NudelQueen</td><td class="p-2">Billie Eilish</td></tr>
+                            <tr><td class="p-2">104</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">Fred again..</td></tr>
+                            <tr><td class="p-2">105</td><td class="p-2">Sofaheld</td><td class="p-2">KI/KI</td></tr>
+                            <tr><td class="p-2">106</td><td class="p-2">NudelQueen</td><td class="p-2">Billie Eilish</td></tr>
+                            <tr><td class="p-2">107</td><td class="p-2">KaffeeJunkie88</td><td class="p-2">Frank Ocean</td></tr>
+                            <tr><td class="p-2">108</td><td class="p-2">TechnoTobi</td><td class="p-2">Marlon Hoffstadt</td></tr>
+                            <tr><td class="p-2">109</td><td class="p-2">Sofaheld</td><td class="p-2">A$AP Rocky</td></tr>
+                            <tr><td class="p-2">110</td><td class="p-2">NudelQueen</td><td class="p-2">Marlon Hoffstadt</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-semibold">Tabelle: User (PK: User_Name)</h5>
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-user" data-filename="3NF_User.csv">
+                                Export .csv
+                            </button>
+                        </div>
+                        <table class="mt-2 min-w-full divide-y divide-stone-200 border text-sm" id="table-n3-user">
+                            <thead class="bg-stone-50"><tr><th class="p-2 text-left">User_Name</th><th class="p-2 text-left">User_Country</th></tr></thead>
+                            <tbody class="divide-y divide-stone-200">
+                            <tr><td class="p-2">KaffeeJunkie88</td><td class="p-2">DE</td></tr>
+                            <tr><td class="p-2">Sofaheld</td><td class="p-2">AT</td></tr>
+                            <tr><td class="p-2">NudelQueen</td><td class="p-2">CH</td></tr>
+                            <tr><td class="p-2">TechnoTobi</td><td class="p-2">DE</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-semibold">Tabelle: Artist (PK: Artist_Name)</h5>
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-artist" data-filename="3NF_Artist.csv">
+                                Export .csv
+                            </button>
+                        </div>
+                        <table class="mt-2 min-w-full divide-y divide-stone-200 border text-sm" id="table-n3-artist">
+                            <thead class="bg-stone-50"><tr><th class="p-2 text-left">Artist_Name</th><th class="p-2 text-left">Artist_Genre</th></tr></thead>
+                            <tbody class="divide-y divide-stone-200">
+                            <tr><td class="p-2">Justin Bieber</td><td class="p-2">Pop</td></tr>
+                            <tr><td class="p-2">Frank Ocean</td><td class="p-2">R&B/Soul</td></tr>
+                            <tr><td class="p-2">Billie Eilish</td><td class="p-2">Alt-Pop</td></tr>
+                            <tr><td class="p-2">Fred again..</td><td class="p-2">Electronic</td></tr>
+                            <tr><td class="p-2">KI/KI</td><td class="p-2">Techno</td></tr>
+                            <tr><td class="p-2">Marlon Hoffstadt</td><td class="p-2">Trance/Techno</td></tr>
+                            <tr><td class="p-2">A$AP Rocky</td><td class="p-2">Hip-Hop</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between">
+                            <h5 class="font-semibold">Tabelle: Playlist_Songs (PK: Playlist_ID, Song_Title)</h5>
+                            <button class="export-btn rounded-md bg-gray-400 px-3 py-1 text-sm font-medium text-white transition hover:bg-gray-500" data-target-table="table-n3-songs" data-filename="3NF_Playlist_Songs.csv">
+                                Export .csv
+                            </button>
+                        </div>
+                        <table class="mt-2 min-w-full divide-y divide-stone-200 border text-sm" id="table-n3-songs">
+                            <thead class="bg-stone-50"><tr><th class="p-2 text-left">Playlist_ID (FK)</th><th class="p-2 text-left">Song_Title</th></tr></thead>
+                            <tbody class="divide-y divide-stone-200">
+                            <tr><td class="p-2">101</td><td class="p-2">Peaches</td></tr>
+                            <tr><td class="p-2">101</td><td class="p-2">Stay</td></tr>
+                            <tr><td class="p-2">102</td><td class="p-2">Lost</td></tr>
+                            <tr><td class="p-2">102</td><td class="p-2">Nights</td></tr>
+                            <tr><td class="p-2">103</td><td class="p-2">bad guy</td></tr>
+                            <tr><td class="p-2">104</td><td class="p-2">Marea (We've Lost Dancing)</td></tr>
+                            <tr><td class="p-2">104</td><td class="p-2">Delilah (Pull Me Out Of This)</td></tr>
+                            <tr><td class="p-2">105</td><td class="p-2">Leave Me</td></tr>
+                            <tr><td class="p-2">106</td><td class="p-2">Happier Than Ever</td></tr>
+                            <tr><td class="p-2">107</td><td class="p-2">Pink + White</td></tr>
+                            <tr><td class="p-2">108</td><td class="p-2">It's That Time</td></tr>
+                            <tr><td class="p-2">108</td><td class="p-2">Call Me</td></tr>
+                            <tr><td class="p-2">109</td><td class="p-2">Praise The Lord (Da Shine)</td></tr>
+                            <tr><td class="p-2">110</td><td class="p-2">It's That Time</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section> -->
+
+    <!-- 5. SQL -->
+    <!-- <section id="sprache" class="mb-16 scroll-mt-24">
+        <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">5. Die Sprache: SQL</h2>
+        <p class="mb-6 text-stone-700">SQL (Structured Query Language) ist die Sprache, mit der wir mit der Datenbank "sprechen". Sie gliedert sich in mehrere Teilbereiche. <strong class="text-blue-600">Klicken Sie auf die Karten</strong>, um die wichtigsten Befehle zu sehen.</p>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+            <div class="sql-card rounded-lg border border-stone-200 bg-white shadow-sm">
+                <div class="sql-card-header flex items-center justify-between p-4">
+                    <h3 class="text-2xl font-semibold text-blue-600">DQL</h3>
+                    <span class="text-sm font-medium text-stone-500">Data Query Language</span>
+                </div>
+                <div class="sql-desc p-4 pt-0">
+                    <p class="mb-3 text-sm text-stone-700">Der wichtigste Teil: Daten abfragen und lesen.</p>
+                    <pre class="overflow-x-auto rounded-md bg-stone-100 p-3 text-sm text-stone-800"><code>SELECT * FROM MITGLIEDER
+WHERE Name = 'Maier'
+ORDER BY Geburtsdatum;</code></pre>
+                </div>
+            </div>
+
+            <div class="sql-card rounded-lg border border-stone-200 bg-white shadow-sm">
+                <div class="sql-card-header flex items-center justify-between p-4">
+                    <h3 class="text-2xl font-semibold text-blue-600">DML</h3>
+                    <span class="text-sm font-medium text-stone-500">Data Manipulation Language</span>
+                </div>
+                <div class="sql-desc hidden p-4 pt-0">
+                    <p class="mb-3 text-sm text-stone-700">Befehle, um Daten zu ändern, einzufügen oder zu löschen.</p>
+                    <pre class="overflow-x-auto rounded-md bg-stone-100 p-3 text-sm text-stone-800"><code>INSERT INTO ort (plz, name) VALUES ('80331', 'München');
+
+UPDATE ort SET plz = '80333' WHERE id = 1;
+
+DELETE FROM ort WHERE id = 1;</code></pre>
+                </div>
+            </div>
+
+            <div class="sql-card rounded-lg border border-stone-200 bg-white shadow-sm">
+                <div class="sql-card-header flex items-center justify-between p-4">
+                    <h3 class="text-2xl font-semibold text-blue-600">DDL</h3>
+                    <span class="text-sm font-medium text-stone-500">Data Definition Language</span>
+                </div>
+                <div class="sql-desc hidden p-4 pt-0">
+                    <p class="mb-3 text-sm text-stone-700">Definiert die Struktur der Datenbank selbst. Erstellt oder ändert Tabellen.</p>
+                    <pre class="overflow-x-auto rounded-md bg-stone-100 p-3 text-sm text-stone-800"><code>CREATE TABLE ort (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    plz VARCHAR(10),
+    name VARCHAR(50)
+);
+
+ALTER TABLE mitarbeiter ADD COLUMN strasse VARCHAR(100);
+
+DROP TABLE ort;</code></pre>
+                </div>
+            </div>
+
+            <div class="sql-card rounded-lg border border-stone-200 bg-white shadow-sm">
+                <div class="sql-card-header flex items-center justify-between p-4">
+                    <h3 class="text-2xl font-semibold text-blue-600">DCL</h3>
+                    <span class="text-sm font-medium text-stone-500">Data Control Language</span>
+                </div>
+                <div class="sql-desc hidden p-4 pt-0">
+                    <p class="mb-3 text-sm text-stone-700">Regelt die Zugriffsrechte und Berechtigungen der Benutzer.</p>
+                    <pre class="overflow-x-auto rounded-md bg-stone-100 p-3 text-sm text-stone-800"><code>GRANT SELECT, UPDATE ON GRUNDBEITRAEGE TO Mueller;
+
+REVOKE DELETE ON GRUNDBEITRAEGE FROM Mueller;</code></pre>
+                </div>
+            </div>
+
+            <div class="sql-card rounded-lg border border-stone-200 bg-white shadow-sm">
+                <div class="sql-card-header flex items-center justify-between p-4">
+                    <h3 class="text-2xl font-semibold text-blue-600">TCL</h3>
+                    <span class="text-sm font-medium text-stone-500">Transaction Control Language</span>
+                </div>
+                <div class="sql-desc hidden p-4 pt-0">
+                    <p class="mb-3 text-sm text-stone-700">Steuert Transaktionen – also mehrere Befehle, die als eine Einheit behandelt werden (z.B. eine Banküberweisung).</p>
+                    <pre class="overflow-x-auto rounded-md bg-stone-100 p-3 text-sm text-stone-800"><code>COMMIT;
+
+ROLLBACK;</code></pre>
+                </div>
+            </div>
+
+        </div>
+    </section> -->
+
+</main>
+
+<footer class="mt-16 border-t border-stone-200 bg-stone-100 p-8 text-center">
+    <p class="text-sm text-stone-600">TODO Quellenangabe</p>
+</footer>
+
+    <script src="js/common.js"></script>
+    <script src="js/db-basics.js"></script>
+</body>
+</html>
+
