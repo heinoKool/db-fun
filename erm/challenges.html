@@ -50,25 +50,70 @@
     <!-- Hero -->
     <section id="hero" class="mb-12">
         <h2 class="mb-4 text-4xl font-bold tracking-tight text-stone-800 md:text-5xl">Praxis-Mission: ER-Modellierung</h2>
-            <p class="mt-4 text-lg text-stone-700">Du hast die Theorie im <a href="../db-basics.html" class="font-medium text-blue-600 hover:underline">interaktiven Skript</a> verstanden? Nice. Jetzt geht's an die Praxis.</p>
-        <p class="mt-2 text-lg text-stone-700">Hier sind vier "Real-World"-Challenges, die auf den Aufgaben aus dem PDF (`ERM-ueb_01.pdf`) basieren, aber in ein modernes Startup-Szenario verpackt sind. Deine Mission: Übersetze die Anforderungen in ein sauberes ER-Modell (UML-Notation).</p>
+        <p class="mt-4 text-lg text-stone-700">Du hast die Theorie im <a href="../db-basics.html" class="font-medium text-blue-600 hover:underline">Skript</a> verstanden? Jetzt geht's an die Praxis.</p>
+        <p class="mt-2 text-lg text-stone-700">Hier sind einige Aufgaben. Deine Mission: Übersetze die Anforderungen in ein sauberes ER-Modell (UML-Notation).</p>
+        <div class="mt-4 flex flex-wrap items-center gap-6">
+            <div class="flex flex-wrap items-center gap-3">
+                <strong class="text-sm text-stone-800">Weitere Infoquellen:</strong>
+                <a href="https://de.wikipedia.org/wiki/Entity-Relationship-Modell" target="_blank" rel="noopener" class="text-sm font-medium text-blue-600 hover:underline">Wikipedia: ER‑Modell</a>
+                <a href="https://youtu.be/I-ctLA--THs?si=bwqPweCqinCLQ2Y2" class="text-sm font-medium text-blue-600 hover:text-blue-600 hover:underline" role="button" aria-label="Video (Platzhalter)" title="Öffnet ein Video zu ER-Modell">Video ER-Modell</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <strong class="text-sm text-stone-800">Tools:</strong>
+                <a href="https://app.diagrams.net/" target="_blank" rel="noopener" class="text-sm font-medium text-blue-600 hover:underline">draw.io / diagrams.net</a>
+                <span class="text-sm text-stone-600">(Tipp: Online-Tool zum Zeichnen von ER‑Modellen)</span>
+            </div>
+        </div>
+        
     </section>
 
     <!-- Challenges Section -->
     <section id="challenges">
         <!-- Tabs Navigation -->
         <div class="mb-6 flex flex-wrap border-b border-stone-300">
-            <button class="challenge-btn active flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c1">Challenge 1: Kino</button>
-            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c2">Challenge 2: Instakram</button>
+            <button class="challenge-btn active flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c1">Challenge 1: Instakram</button>
+            <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c2">Challenge 2: Kino</button>
             <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c3">Challenge 3: Pokédex-Basis</button>
             <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="c4">Challenge 4: Pokédex-Liga</button>
         </div>
 
         <!-- Challenge Content -->
         <div class="rounded-lg bg-white shadow-lg">
-            <!-- Challenge 1: Kino -->
+            <!-- Challenge 1: Instakram -->
             <div id="content-c1" class="challenge-content p-6 md:p-8">
-                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 1 (Warm-Up): "Kino"</h3>
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 1: "Instakram"</h3>
+                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust die Core-Features von Instagram nach. Im Zentrum stehen User, Posts, Kommentare, Likes und natürlich Follower.</p>
+
+                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
+                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
+                    <li>Ein <strong>User</strong> kann mehrere <strong>Posts</strong> erstellen. Ein Post gehört genau einem User.</li>
+                    <li>Ein <strong>User</strong> kann viele <strong>Posts</strong> "liken". Ein <strong>Post</strong> kann von vielen <strong>Usern</strong> "geliked" werden.</li>
+                    <li>Ein <strong>User</strong> kann viele <strong>Kommentare</strong> schreiben. Ein <strong>Post</strong> kann viele <strong>Kommentare</strong> haben.</li>
+                    <li>Ein <strong>Kommentar</strong> gehört immer zu *genau einem* <strong>User</strong> UND *genau einem* <strong>Post</strong>.</li>
+                    <li>(Die Knifflige): Ein <strong>User</strong> kann vielen anderen <strong>Usern</strong> folgen. Ein <strong>User</strong> kann von vielen anderen <strong>Usern</strong> gefolgt werden.</li>
+                </ul>
+
+
+                <!-- LÖSUNG C1 -->
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                    <div class="flex flex-wrap items-center gap-4">
+                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
+                        <input type="password" id="pass-c1" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
+                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c1" data-pass="pass-c1">
+                            Lösung anzeigen
+                        </button>
+                        <span id="msg-c1" class="text-sm text-red-600"></span>
+                    </div>
+                    <div id="solution-c1" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
+                        <object type="image/svg+xml" data="assets/instakram.svg"></object>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Challenge 2: Kino -->
+            <div id="content-c2" class="challenge-content hidden p-6 md:p-8">
+                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 2: "Kino"</h3>
                 <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du designst das System für eine große Kinokette, um deren Standorte, Säle und das laufende Programm zu verwalten. (Basiert auf PDF-Aufgabe B).</p>
 
                 <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
@@ -81,60 +126,9 @@
                     <li>Jeder <strong>Saal</strong> hat Attribute, die du mitspeichern sollst: `Name` (z.B. "Saal 8"), `Sitzplätze` (z.B. 250) und `Leinwandgröße_m2` (z.B. 50).</li>
                 </ul>
 
-                <div class="rounded-lg bg-blue-50 p-4">
-                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
-                    <p class="text-blue-900">Pro-Tipp: Die "Vorstellung" ist hier der absolute Schlüssel!</p>
-                    <ul class="ml-5 mt-2 list-disc text-sm">
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Die Kette Ort &rarr; Kino &rarr; Saal sind klassische 1:n-Beziehungen.</a></li>
-                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Die "Vorstellung" löst die m:n-Beziehung zwischen Film und Saal auf (nicht Film und Kino!).</a></li>
-                        <li>Vergiss nicht, die Attribute (`Sitzplätze` etc.) an die richtige Entität (`Saal`) zu hängen.</li>
-                    </ul>
-                </div>
-
-                <!-- LÖSUNG C1 -->
-                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
-                    <div class="flex flex-wrap items-center gap-4">
-                        <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
-                        <input type="password" id="pass-c1" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
-                        <button class="solution-btn rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700" data-target="solution-c1" data-pass="pass-c1">
-                            Lösung anzeigen
-                        </button>
-                        <span id="msg-c1" class="text-sm text-red-600"></span>
-                    </div>
-                    <div id="solution-c1" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
-                        <p class="mb-4 text-sm text-stone-600">Die Kette `Ort &rarr; Kino &rarr; Saal` ist 1:n. Die `Vorstellung` ist die Zwischentabelle, die `Film` und `Saal` (nicht `Kino`!) verbindet und das Datum/die Uhrzeit speichert.</p>
-                        <object type="image/svg+xml" data="assets/cinema.svg"></object>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Challenge 2: Instakram -->
-            <div id="content-c2" class="challenge-content hidden p-6 md:p-8">
-                <h3 class="mb-3 text-3xl font-bold text-blue-700">Challenge 2 (Medium): "Instakram"</h3>
-                <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust die Core-Features von Instagram nach. Im Zentrum stehen User, Posts, Kommentare, Likes und natürlich Follower.</p>
-
-                <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
-                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
-                    <li>Ein <strong>User</strong> kann mehrere <strong>Posts</strong> erstellen. Ein Post gehört genau einem User.</li>
-                    <li>Ein <strong>User</strong> kann viele <strong>Posts</strong> "liken". Ein <strong>Post</strong> kann von vielen <strong>Usern</strong> "geliked" werden.</li>
-                    <li>Ein <strong>User</strong> kann viele <strong>Kommentare</strong> schreiben. Ein <strong>Post</strong> kann viele <strong>Kommentare</strong> haben.</li>
-                    <li>Ein <strong>Kommentar</strong> gehört immer zu *genau einem* <strong>User</strong> UND *genau einem* <strong>Post</strong>.</li>
-                    <li>(Die Knifflige): Ein <strong>User</strong> kann vielen anderen <strong>Usern</strong> folgen. Ein <strong>User</strong> kann von vielen anderen <strong>Usern</strong> gefolgt werden.</li>
-                </ul>
-
-                <div class="rounded-lg bg-blue-50 p-4">
-                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
-                    <p class="text-blue-900">Hier sind drei verschiedene Beziehungs-Typen drin!</p>
-                    <ul class="ml-5 mt-2 list-disc text-sm">
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">User &rarr; Post: Eine klassische 1:n-Beziehung.</a></li>
-                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">User &harr; Post (Like): Eine m:n-Beziehung, braucht eine Zwischentabelle `Likes`.</a></li>
-                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">User &harr; User (Follow): Eine m:n-Beziehung, die sich auf *dieselbe* Tabelle bezieht! Die Zwischentabelle `Follower` braucht zwei Spalten: `follower_id` und `followed_id`.</a></li>
-                        <li>Die Entität `Kommentar` ist der "Schnittpunkt" und hat zwei 1:n-Beziehungen (zwei Fremdschlüssel): einen zu `User` und einen zu `Post`.</li>
-                    </ul>
-                </div>
 
                 <!-- LÖSUNG C2 -->
-                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
                     <div class="flex flex-wrap items-center gap-4">
                         <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
                         <input type="password" id="pass-c2" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
@@ -144,9 +138,10 @@
                         <span id="msg-c2" class="text-sm text-red-600"></span>
                     </div>
                     <div id="solution-c2" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
-                        <object type="image/svg+xml" data="assets/instakram.svg"></object>
+                        <p class="mb-4 text-sm text-stone-600">Die Kette `Ort &rarr; Kino &rarr; Saal` ist 1:n. Die `Vorstellung` ist die Zwischentabelle, die `Film` und `Saal` (nicht `Kino`!) verbindet und das Datum/die Uhrzeit speichert.</p>
+                        <object type="image/svg+xml" data="assets/cinema.svg"></object>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Challenge 3: Pokédex-Basis -->
@@ -165,19 +160,10 @@
                     <li>(Bonus): Eine <strong>Spezies</strong> kann sich zu einer anderen <strong>Spezies</strong> entwickeln (z.B. "Pikachu" &rarr; "Raichu").</li>
                 </ul>
 
-                <div class="rounded-lg bg-blue-50 p-4">
-                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
-                    <p class="text-blue-900">Hier dreht sich fast alles um m:n-Beziehungen.</p>
-                    <ul class="ml-5 mt-2 list-disc text-sm">
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Spezies &harr; Typ: Eine m:n-Beziehung (Zwischentabelle `Spezies_Typ`).</a></li>
-                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Spezies &harr; Attacke: Noch eine m:n-Beziehung (Zwischentabelle `Lernbare_Attacken`).</a></li>
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Attacke &rarr; Typ: Eine 1:n-Beziehung (Wo kommt der FK hin?).</a></li>
-                        <li>(Bonus): Die "Entwicklung" ist eine 1:n-Beziehung auf sich selbst (Self-Join). Die Tabelle `Spezies` braucht eine Spalte `entwickelt_aus_id_FK`, die auf `Spezies.id` zeigt.</li>
-                    </ul>
-                </div>
+                
 
                 <!-- LÖSUNG C3 -->
-                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
                     <div class="flex flex-wrap items-center gap-4">
                         <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
                         <input type="password" id="pass-c3" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
@@ -191,7 +177,7 @@
                         <object type="image/svg+xml" data="assets/pokemon.svg"></object>
                         <p class="mt-4 text-sm text-stone-600"><strong>Bonus (Entwicklung):</strong> Die Entität `Spezies` hat einen Fremdschlüssel `entwickelt_aus_id` (1:n), der auf ihre *eigene* `id`-Spalte zeigt (Self-Join).</p>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <!-- Challenge 4: Pokédex-Liga -->
@@ -211,19 +197,10 @@
                     <li>Eine <strong>Arena</strong> kann ihren <strong>Orden</strong> an viele <strong>Trainer</strong> vergeben haben.</li>
                 </ul>
 
-                <div class="rounded-lg bg-blue-50 p-4">
-                    <h5 class="mb-2 text-lg font-semibold text-blue-800">Hints & Links (Differenzierung)</h5>
-                    <p class="text-blue-900">Hier kommt alles zusammen: 1:1, 1:n und m:n.</p>
-                    <ul class="ml-5 mt-2 list-disc text-sm">
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Trainer &harr; Arena (Leiter): Eine klassische 1:1-Beziehung.</a></li>
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Trainer &rarr; Pokémon: 1:n.</a></li>
-                        <li><a href="db_basics_spa.html#bauplan" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Spezies &rarr; Pokémon: 1:n. (Die Entität `Pokémon` hat also zwei Fremdschlüssel!).</a></li>
-                        <li><a href="db_basics_spa.html#content-tabellen" class="font-medium text-blue-600 underline hover:text-blue-800" target="_blank">Trainer &harr; Arena (Orden): Eine m:n-Beziehung. Die Zwischentabelle `Gewonnene_Orden` speichert, welcher Trainer welchen Orden hat.</a></li>
-                    </ul>
-                </div>
+                
 
                 <!-- LÖSUNG C4 -->
-                <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
+                <!-- <div class="solution-container mt-6 rounded-lg border border-stone-300 p-4">
                     <div class="flex flex-wrap items-center gap-4">
                         <h5 class="text-lg font-semibold text-stone-800">Lösung</h5>
                         <input type="password" id="pass-c4" class="rounded border border-stone-400 px-2 py-1 text-sm" placeholder="Passwort...">
@@ -236,7 +213,7 @@
                         <p class="mb-4 text-sm text-stone-600">`Trainer` ist die zentrale Entität. `Trainer` &harr; `Arena` (Leiter) ist 1:1. `Trainer` &harr; `Arena` (Orden) ist m:n. `Pokemon` (individuell) ist die 1:n-Schnittstelle zu `Trainer` und `Spezies`.</p>
                         <object type="image/svg+xml" data="assets/pokemon-extended.svg"></object>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>

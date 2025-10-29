@@ -56,13 +56,12 @@
         <div class="hidden items-center md:flex">
             <div class="flex space-x-4">
                 <a href="#grundlagen" class="text-stone-600 hover:text-blue-600">Grundlagen</a>
-                <a href="#prozess" class="text-stone-600 hover:text-blue-600">Prozess</a>
-                <a href="#bauplan" class="text-stone-600 hover:text-blue-600">Bauplan</a>
-                <a href="#hygiene" class="text-stone-600 hover:text-blue-600">Hygiene</a>
-                <a href="#sprache" class="text-stone-600 hover:text-blue-600">SQL</a>
+                <a href="#prozess" class="text-stone-600 hover:text-blue-600">Design-Prozess</a>
+                <a href="#bauplan" class="text-stone-600 hover:text-blue-600">ERM/Tabelle</a>
+                <!-- <a href="#hygiene" class="text-stone-600 hover:text-blue-600">Optimierung</a>
+                <a href="#sprache" class="text-stone-600 hover:text-blue-600">SQL</a> -->
             </div>
             <div class="mx-4 h-5 w-px bg-stone-200"></div>
-            <a href="erm/challenges.html" class="text-stone-600 hover:text-blue-600 font-medium">Challenges</a>
         </div>
         <button class="md:hidden" id="mobile-menu-btn" aria-label="Menü öffnen">
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
@@ -182,7 +181,10 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
 
         <!-- Tab Content: ERM -->
         <div id="content-erm" class="tab-content rounded-lg bg-white p-6">
-            <h3 class="mb-4 text-2xl font-semibold">1. Das ER-Modell (Konzeptionell)</h3>
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-2xl font-semibold">1. Das ER-Modell (Konzeptionell)</h3>
+                <a href="erm/challenges.html" class="ml-4 inline-flex items-center rounded-md bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-200">Challenges</a>
+            </div>
             <p class="mb-4 text-stone-700">Das ER-Modell (Entity-Relationship-Modell) ist der grafische Bauplan. Es zeigt die "Dinge" (Entitäten) und wie sie zusammenhängen (Beziehungen). Die **Kardinalität** (z.B. 1:1, 1:n) beschreibt die *Anzahl* der möglichen Beziehungen.</p>
 
             <!-- Einführung: Grundelemente des ER-Modells -->
@@ -405,12 +407,11 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
     </section>
 
     <!-- 4. Daten-Hygiene -->
-    <section id="hygiene" class="mb-16 scroll-mt-24">
+    <!-- <section id="hygiene" class="mb-16 scroll-mt-24">
         <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">4. Daten-Hygiene: Normalisierung</h2>
         <p class="mb-4 text-stone-700">Warum der ganze Aufwand mit dem Aufteilen in Tabellen? Um Redundanz (doppelte Daten) zu vermeiden. Redundanz führt zu "Anomalien" (Fehlern) bei Änderungen, Löschungen oder beim Einfügen von Daten. Die Lösung ist die **Normalisierung**.</p>
         <p class="mb-6 text-stone-700">Wir verwandeln eine "unsaubere" Spotify-Playlist-Tabelle (0NF) schrittweise in "saubere" Tabellen (bis zur 3. Normalform). <strong class="text-blue-600">Klicken Sie sich durch die Normalformen</strong>, um die Transformation der Daten zu sehen.</p>
 
-        <!-- Normalization Buttons -->
         <div class="mb-6 flex flex-wrap gap-2">
             <button class="norm-btn active rounded-full px-4 py-2 font-medium" data-norm="n0">0NF (Ausgangstabelle)</button>
             <button class="norm-btn rounded-full bg-stone-200 px-4 py-2 font-medium hover:bg-stone-300" data-norm="n1">1. Normalform (1NF)</button>
@@ -418,9 +419,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
             <button class="norm-btn rounded-full bg-stone-200 px-4 py-2 font-medium hover:bg-stone-300" data-norm="n3">3. Normalform (3NF)</button>
         </div>
 
-        <!-- Normalization Content -->
         <div class="overflow-x-auto rounded-lg bg-white p-6 shadow-md">
-
             <div id="content-n0" class="norm-content">
                 <div class="flex items-center justify-between">
                     <h4 class="mb-4 text-xl font-semibold">0NF: Die "Chaos-Playlist"</h4>
@@ -596,12 +595,13 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- 5. SQL -->
-    <section id="sprache" class="mb-16 scroll-mt-24">
+    <!-- <section id="sprache" class="mb-16 scroll-mt-24">
         <h2 class="mb-8 border-b-2 border-blue-200 pb-2 text-3xl font-bold text-stone-800">5. Die Sprache: SQL</h2>
         <p class="mb-6 text-stone-700">SQL (Structured Query Language) ist die Sprache, mit der wir mit der Datenbank "sprechen". Sie gliedert sich in mehrere Teilbereiche. <strong class="text-blue-600">Klicken Sie auf die Karten</strong>, um die wichtigsten Befehle zu sehen.</p>
 
@@ -681,7 +681,7 @@ ROLLBACK;</code></pre>
             </div>
 
         </div>
-    </section>
+    </section> -->
 
 </main>
 
