@@ -186,16 +186,7 @@
                 <p class="mb-6 text-base text-stone-600"><strong>Das Briefing:</strong> Du baust auf Challenge 3 auf. Jetzt kommen die Trainer, die individuellen Pokémon und die Arenen ins Spiel.</p>
 
                 <h4 class="mb-3 text-xl font-semibold text-stone-800">Die Regeln (Anforderungen):</h4>
-                <ul class="mb-6 list-inside list-disc space-y-2 text-stone-700">
-                    <li>(Basis): Du brauchst die Entität <strong>Trainer</strong> (z.B. "Ash", "Misty").</li>
-                    <li>Ein <strong>Trainer</strong> kann viele <strong>Pokémon</strong> besitzen (seine "individuellen" Pokémon im Team).</li>
-                    <li>Ein individuelles <strong>Pokémon</strong> gehört aber zu *genau einem* <strong>Trainer</strong>.</li>
-                    <li>Jedes individuelle <strong>Pokémon</strong> ist von *genau einer* <strong>Spezies</strong> (aus Challenge 3).</li>
-                    <li>(Arena): Du brauchst die Entität <strong>Arena</strong> (z.B. "Marmoria City Arena").</li>
-                    <li>Jede <strong>Arena</strong> hat *genau einen* <strong>Trainer</strong> als <strong>Arenaleiter</strong>. Ein Trainer kann nur *eine* Arena leiten.</li>
-                    <li>(Orden): Ein <strong>Trainer</strong> kann viele <strong>Orden</strong> von verschiedenen <strong>Arenen</strong> gewinnen.</li>
-                    <li>Eine <strong>Arena</strong> kann ihren <strong>Orden</strong> an viele <strong>Trainer</strong> vergeben haben.</li>
-                </ul>
+                <p class="mb-6 text-stone-700">Grundsätzlich brauchst du die Entität <strong>Trainer</strong> (z.B. "Ash", "Misty") sowie eine Entität für individuelle <strong>Pokémon</strong>, die jedes für sich einem Trainer gehört und gleichzeitig genau einer <strong>Spezies</strong> (aus Challenge 3) zugeordnet ist. Ein Trainer kann mehrere dieser individuellen Pokémon besitzen, ein individuelles Pokémon gehört jedoch immer genau zu einem Trainer. Ergänze außerdem die Entität <strong>Arena</strong> (z.B. "Marmoria City Arena"); jede Arena hat genau einen Trainer als Arenaleiter, und ein Trainer kann höchstens eine Arena leiten (1:1-Beziehung). Darüber hinaus werden <strong>Orden</strong> vergeben: Ein Trainer kann viele Orden von verschiedenen Arenen gewinnen, und eine Arena kann ihren Orden an viele Trainer vergeben haben — das ist eine m:n‑Beziehung, die du sinnvoll modellieren und (z. B.) mit einem Datumsfeld für das Gewinn‑Datum ausstatten solltest. Denke beim Modellieren an konsistente Fremdschlüssel (Referentielle Integrität) und an die Darstellung von historischen Ereignissen (wann wurde ein Orden gewonnen).</p>
 
                 
 
