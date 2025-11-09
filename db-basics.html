@@ -97,7 +97,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div class="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
                 <h3 class="mb-3 text-2xl font-semibold text-blue-600">Datenbank (DB)</h3>
-                <p class="text-stone-700">Die Datenbank ist im Grunde nur die reine, strukturierte Sammlung von Daten. Stellen Sie sich ein riesiges, perfekt organisiertes Lagerhaus voller Akten (Daten) vor. Das Lagerhaus selbst *tut* nichts, es *beinhert* nur die Informationen.</p>
+                <p class="text-stone-700">Die Datenbank ist im Grunde nur die reine, strukturierte Sammlung von Daten. Stellen Sie sich ein riesiges, perfekt organisiertes Lagerhaus voller Akten (Daten) vor. Das Lagerhaus selbst <strong>tut</strong> nichts, es <strong>beinhert</strong> nur die Informationen.</p>
             </div>
             <div class="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
                 <h3 class="mb-3 text-2xl font-semibold text-blue-600">Datenbankmanagementsystem (DBMS)</h3>
@@ -122,12 +122,12 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 </div>
                 <div id="ebene-konzept" class="ebene-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">2. Konzeptionelle Ebene (Logisches Modell)</h4>
-                    <p class="text-stone-700">Dies ist die "Architekten-Sicht". Hier wird die logische Struktur *aller* Daten in der Datenbank beschrieben: Welche Tabellen gibt es? Wie hängen sie zusammen (Beziehungen)? Welche Regeln gelten? Diese Ebene ist unabhängig von der physischen Speicherung. Das ER-Modell ist ein Werkzeug, um diese Ebene zu entwerfen.</p>
+                    <p class="text-stone-700">Dies ist die "Architekten-Sicht". Hier wird die logische Struktur <strong>aller</strong> Daten in der Datenbank beschrieben: Welche Tabellen gibt es? Wie hängen sie zusammen (Beziehungen)? Welche Regeln gelten? Diese Ebene ist unabhängig von der physischen Speicherung. Das ER-Modell ist ein Werkzeug, um diese Ebene zu entwerfen.</p>
                     <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> Semantisches Modell, ER-Modell, Beziehungen</p>
                 </div>
                 <div id="ebene-intern" class="ebene-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">3. Interne Ebene (Physische Speicherung)</h4>
-                    <p class="text-stone-700">Dies ist die "Maschinenraum"-Ebene. Sie beschreibt, *wie* die Daten tatsächlich auf der Festplatte gespeichert werden. Hier geht es um Dateistrukturen, Indizes, Speicherblöcke und Optimierung. Der normale Entwickler oder Benutzer muss diese Ebene nicht kennen. Das DBMS (z.B. MariaDB) kümmert sich darum.</p>
+                    <p class="text-stone-700">Dies ist die "Maschinenraum"-Ebene. Sie beschreibt, <strong>wie</strong> die Daten tatsächlich auf der Festplatte gespeichert werden. Hier geht es um Dateistrukturen, Indizes, Speicherblöcke und Optimierung. Der normale Entwickler oder Benutzer muss diese Ebene nicht kennen. Das DBMS (z.B. MariaDB) kümmert sich darum.</p>
                     <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> DBMS, MariaDB, Datei</p>
                 </div>
             </div>
@@ -149,11 +149,11 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
             <div class="w-full md:w-2/3 md:pl-6">
                 <div id="phase-1" class="phase-content rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">1. Externe Phase (Anforderungsanalyse)</h4>
-                    <p class="text-stone-700">Was muss das System überhaupt können? In dieser Phase wird der Informationsbedarf der Benutzer ermittelt. Man spricht mit den Anwendern, analysiert bestehende Formulare oder Datenbestände ("Realitätsbeobachtungen", "Benutzersichtanalysen"). Das Ziel ist, zu verstehen, *welche* Daten (Input) gebraucht werden, um das gewünschte Ergebnis (Output, z.B. Berichte) zu erzeugen.</p>
+                    <p class="text-stone-700">Was muss das System überhaupt können? In dieser Phase wird der Informationsbedarf der Benutzer ermittelt. Man spricht mit den Anwendern, analysiert bestehende Formulare oder Datenbestände ("Realitätsbeobachtungen", "Benutzersichtanalysen"). Das Ziel ist, zu verstehen, <strong>welche</strong> Daten (Input) gebraucht werden, um das gewünschte Ergebnis (Output, z.B. Berichte) zu erzeugen.</p>
                 </div>
                 <div id="phase-2" class="phase-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">2. Konzeptionelle Phase (Semantisches Modell)</h4>
-                    <p class="text-stone-700">Hier wird der "Bauplan" gezeichnet. Das Ergebnis der Analyse wird in ein formales, aber DBMS-unabhängiges Modell übersetzt. Das wichtigste Werkzeug hierfür ist das **ER-Modell (Entity-Relationship-Modell)**. Es beschreibt die "Dinge" (Entitäten, z.B. `Mitarbeiter`, `Abteilung`) und wie sie zusammenhängen (Beziehungen, z.B. `arbeitet in`).</p>
+                    <p class="text-stone-700">Hier wird der "Bauplan" gezeichnet. Das Ergebnis der Analyse wird in ein formales, aber DBMS-unabhängiges Modell übersetzt. Das wichtigste Werkzeug hierfür ist das <strong>ER-Modell (Entity-Relationship-Modell)</strong>. Es beschreibt die "Dinge" (Entitäten, z.B. <code>Mitarbeiter</code>, <code>Abteilung</code>) und wie sie zusammenhängen (Beziehungen, z. B. <code>arbeitet in</code>).</p>
                 </div>
                 <div id="phase-3" class="phase-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">3. Logische Phase (Relationales Modell)</h4>
@@ -161,7 +161,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 </div>
                 <div id="phase-4" class="phase-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">4. Physische Phase (Implementierung)</h4>
-                    <p class="text-stone-700">Jetzt wird es technisch. Das logische Tabellenmodell wird mit der Sprache **SQL** in einem *spezifischen* DBMS (z.B. MariaDB) implementiert. Hier werden mit `CREATE TABLE` die Tabellen angelegt, Datentypen (z.B. `VARCHAR`, `INT`) festgelegt und die physische Speicherung (z.B. `ENGINE=InnoDB`) definiert.</p>
+                    <p class="text-stone-700">Jetzt wird es technisch. Das logische Tabellenmodell wird mit der Sprache <strong>SQL</strong> in einem <strong>spezifischen</strong> DBMS (z.B. MariaDB) implementiert. Hier werden mit <code>CREATE TABLE</code> die Tabellen angelegt, Datentypen (z.B. <code>VARCHAR</code>, <code>INT</code>) festgelegt und die physische Speicherung (z.B. <code>ENGINE=InnoDB</code>) definiert.</p>
                 </div>
             </div>
         </div>
@@ -185,7 +185,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 <h3 class="text-2xl font-semibold">1. Das ER-Modell (Konzeptionell)</h3>
                 <a href="erm/challenges.html" class="ml-4 inline-flex items-center rounded-md bg-blue-50 px-3 py-1 text-sm font-medium text-blue-600 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-200">Challenges</a>
             </div>
-            <p class="mb-4 text-stone-700">Das ER-Modell (Entity-Relationship-Modell) ist der grafische Bauplan. Es zeigt die "Dinge" (Entitäten) und wie sie zusammenhängen (Beziehungen). Die **Kardinalität** (z.B. 1:1, 1:n) beschreibt die *Anzahl* der möglichen Beziehungen.</p>
+            <p class="mb-4 text-stone-700">Das ER-Modell (Entity-Relationship-Modell) ist der grafische Bauplan. Es zeigt die "Dinge" (Entitäten) und wie sie zusammenhängen (Beziehungen). Die <strong>Kardinalität</strong> (z.B. 1:1, 1:n) beschreibt die <strong>Anzahl</strong> der möglichen Beziehungen.</p>
 
             <!-- Einführung: Grundelemente des ER-Modells -->
             <div class="mb-6 rounded-lg border border-stone-200 bg-stone-50 p-4">
@@ -226,21 +226,21 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 <!-- 1:1 Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">1:1-Beziehung (Eins-zu-Eins)</h4>
-                    <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus Tabelle A ist mit *genau einem* Datensatz aus Tabelle B verbunden (z.B. `Lehrer` leitet `Klasse`).</p>
+                    <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus Tabelle A ist mit <strong>genau einem</strong> Datensatz aus Tabelle B verbunden (z. B. <code>Lehrer</code> leitet <code>Klasse</code>).</p>
                     <object type="image/svg+xml" data="diagrams/teacher-relation.svg" class="w-2xl h-32"></object>
                 </div>
                 <!-- 1:n Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">1:n-Beziehung (Eins-zu-Viele)</h4>
-                    <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus A kann mit *vielen* Datensätzen aus B verbunden sein (z.B. `Klasse` hat viele `Schüler`).</p>
+                    <p class="mb-4 text-sm text-stone-600">Ein Datensatz aus A kann mit <strong>vielen</strong> Datensätzen aus B verbunden sein (z. B. <code>Klasse</code> hat viele <code>Schüler</code>).</p>
                     <object type="image/svg+xml" data="diagrams/class-relation.svg" class="w-2xl h-32"></object>
                 </div>
                 <!-- m:n Beziehung -->
                 <div>
                     <h4 class="mb-2 text-lg font-semibold text-blue-600">m:n-Beziehung (Viele-zu-Viele)</h4>
-                    <p class="mb-4 text-sm text-stone-600">Viele Datensätze aus A können mit *vielen* Datensätzen aus B verbunden sein (z.B. `Schüler` belegt viele `Kurse`).</p>
+                    <p class="mb-4 text-sm text-stone-600">Viele Datensätze aus A können mit <strong>vielen</strong> Datensätzen aus B verbunden sein (z. B. <code>Schüler</code> belegt viele <code>Kurse</code>).</p>
                     <object type="image/svg+xml" data="diagrams/course-relation.svg" class="w-2xl h-32"></object>
-                    <p class="mt-3 text-sm text-stone-600"><strong>Wichtig:</strong> m:n-Beziehungen können nicht direkt in Tabellen umgesetzt werden. Sie *müssen* aufgelöst werden (siehe Tabellenmodell).</p>
+                    <p class="mt-3 text-sm text-stone-600"><strong>Wichtig:</strong> m:n-Beziehungen können nicht direkt in Tabellen umgesetzt werden. Sie <strong>müssen</strong> aufgelöst werden (siehe Tabellenmodell).</p>
                 </div>
             </div>
         </div>
@@ -253,7 +253,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
 
             <ul class="mb-4 list-none space-y-6 text-stone-700">
                 <li>
-                    <strong>Regel 1 (Entität):</strong> Jede Entitätsmenge (z.B. `Schüler`, `Klasse`, `Kurs`) wird zu einer eigenen Tabelle.
+                    <strong>Regel 1 (Entität):</strong> Jede Entitätsmenge (z. B. <code>Schüler</code>, <code>Klasse</code>, <code>Kurs</code>) wird zu einer eigenen Tabelle.
                     <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
                         <div>
                             <h5 class="text-sm font-semibold">Tabelle: Klasse</h5>
@@ -280,7 +280,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 </li>
 
                 <li>
-                    <strong>Regel 3 (1:n):</strong> Bei einer 1:n-Beziehung (z.B. `Klasse` 1---n `Schüler`) wird der Primärschlüssel der '1'-Seite (z.B. `Klasse.id`) als <strong>Fremdschlüssel</strong> in die Tabelle der 'n'-Seite (z.B. `Schüler.kid_FK`) aufgenommen.
+                    <strong>Regel 3 (1:n):</strong> Bei einer 1:n-Beziehung (z. B. <code>Klasse</code> 1---n <code>Schüler</code>) wird der Primärschlüssel der '1'-Seite (z. B. <code>Klasse.id</code>) als <strong>Fremdschlüssel</strong> in die Tabelle der 'n'-Seite (z. B. <code>Schüler.kid_FK</code>) aufgenommen.
                     <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div>
                             <h5 class="text-sm font-semibold">Tabelle: Klasse (unverändert)</h5>
@@ -300,12 +300,12 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 </li>
 
                 <li>
-                    <strong>Regel 4 (m:n):</strong> m:n-Beziehungen (z.B. `Schüler` m---n `Kurs`) können nicht direkt abgebildet werden. Sie *müssen* aufgelöst werden!
+                    <strong>Regel 4 (m:n):</strong> m:n-Beziehungen (z. B. <code>Schüler</code> m---n <code>Kurs</code>) können nicht direkt abgebildet werden. Sie <strong>müssen</strong> aufgelöst werden!
                 </li>
             </ul>
 
             <h4 class="mb-2 text-xl font-semibold">Auflösung einer m:n-Beziehung</h4>
-            <p class="mb-4 text-stone-700">Man erstellt eine neue **Zwischentabelle** (Koppeltabelle), die die m:n-Beziehung in zwei 1:n-Beziehungen aufspaltet. Diese Tabelle (z.B. `belegt`) enthält die Fremdschlüssel *beider* beteiligten Tabellen (z.B. `schueler_id_FK` und `kurs_id_FK`).</p>
+            <p class="mb-4 text-stone-700">Man erstellt eine neue <strong>Zwischentabelle</strong> (Koppeltabelle), die die m:n-Beziehung in zwei 1:n-Beziehungen aufspaltet. Diese Tabelle (z. B. <code>belegt</code>) enthält die Fremdschlüssel <strong>beider</strong> beteiligten Tabellen (z. B. <code>schueler_id_FK</code> und <code>kurs_id_FK</code>).</p>
             <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div>
                     <h5 class="text-sm font-semibold">Tabelle: Schüler</h5>
@@ -345,11 +345,11 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
             <div class="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <div class="rounded-lg border border-stone-200 p-4">
                     <strong class="text-blue-600">Primärschlüssel (Primary Key, PK)</strong>
-                    <p class="mt-2 text-stone-700">Ein Attribut (oder eine Kombination), das einen Datensatz (Zeile) in einer Tabelle *eindeutig* identifiziert. (z.B. `Schüler.id`).</p>
+                    <p class="mt-2 text-stone-700">Ein Attribut (oder eine Kombination), das einen Datensatz (Zeile) in einer Tabelle *eindeutig* identifiziert. (z. B. <code>Schüler.id</code>).</p>
                     <ul class="ml-5 mt-2 list-disc text-sm text-stone-600">
-                        <li>Darf nicht `NULL` (leer) sein.</li>
+                        <li>Darf nicht <code>NULL</code> (leer) sein.</li>
                         <li>Muss eindeutig sein.</li>
-                        <li>Oft ein "künstlicher" Zählschlüssel (z.B. `AUTO_INCREMENT`).</li>
+                        <li>Oft ein "künstlicher" Zählschlüssel (z. B. <code>AUTO_INCREMENT</code>).</li>
                     </ul>
                     <h5 class="mt-3 text-xs font-semibold uppercase">Beispiel: Tabelle: Klasse</h5>
                     <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
@@ -359,9 +359,9 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 </div>
                 <div class="rounded-lg border border-stone-200 p-4">
                     <strong class="text-blue-600">Fremdschlüssel (Foreign Key, FK)</strong>
-                    <p class="mt-2 text-stone-700">Ein Attribut in einer Tabelle (z.B. `Schüler.kid_FK`), das auf einen *Primärschlüssel* in einer anderen Tabelle (z.B. `Klasse.id`) verweist. Dies ist die technische Umsetzung einer "Beziehung".</p>
+                    <p class="mt-2 text-stone-700">Ein Attribut in einer Tabelle (z. B. <code>Schüler.kid_FK</code>), das auf einen *Primärschlüssel* in einer anderen Tabelle (z. B. <code>Klasse.id</code>) verweist. Dies ist die technische Umsetzung einer "Beziehung".</p>
                     <ul class="ml-5 mt-2 list-disc text-sm text-stone-600">
-                        <li>Stellt die <strong>Referentielle Integrität</strong> sicher: Es kann keinen `Schüler` mit einer `kid_FK` geben, die nicht in der `Klasse`-Tabelle als `id` existiert.</li>
+                        <li>Stellt die <strong>Referentielle Integrität</strong> sicher: Es kann keinen <code>Schüler</code> mit einer <code>kid_FK</code> geben, die nicht in der <code>Klasse</code>-Tabelle als <code>id</code> existiert.</li>
                     </ul>
                     <h5 class="mt-3 text-xs font-semibold uppercase">Beispiel: Tabelle: Schüler (mit FK)</h5>
                     <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
@@ -453,7 +453,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                         Export .csv
                     </button>
                 </div>
-                <p class="mb-4 text-sm text-stone-600">Alle Attribute sind atomar (ein Wert pro Zelle). Die Zeilen 101, 102 und 104 wurden aufgespalten. Der Primärschlüssel ist jetzt eine Kombination aus `(Playlist_ID, Song_Title)`. <br><strong>Problem:</strong> Noch mehr Redundanz! Jetzt wird alles *noch öfter* wiederholt.</p>
+                <p class="mb-4 text-sm text-stone-600">Alle Attribute sind atomar (ein Wert pro Zelle). Die Zeilen 101, 102 und 104 wurden aufgespalten. Der Primärschlüssel ist jetzt eine Kombination aus (<code>Playlist_ID</code>, <code>Song_Title</code>). <br><strong>Problem:</strong> Noch mehr Redundanz! Jetzt wird alles <em>noch öfter</em> wiederholt.</p>
                 <table class="min-w-full divide-y divide-stone-200 border text-sm" id="table-n1">
                     <thead class="bg-stone-50"><tr class="font-semibold"><th class="p-2 text-left">Playlist_ID</th><th class="p-2 text-left">User_Name</th><th class="p-2 text-left">User_Country</th><th class="p-2 text-left">Artist_Name</th><th class="p-2 text-left">Artist_Genre</th><th class="p-2 text-left">Song_Title</th></tr></thead>
                     <tbody class="divide-y divide-stone-200">
@@ -476,7 +476,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
 
             <div id="content-n2" class="norm-content hidden">
                 <h4 class="mb-4 text-xl font-semibold">2. Normalform (Aufteilung nach PK)</h4>
-                <p class="mb-4 text-sm text-stone-600">Die Tabelle wird aufgeteilt. Alle Infos, die nur von `Playlist_ID` (einem *Teil* des PK) abhängen, kommen in eine eigene Tabelle `Playlist`.<br><strong>Problem:</strong> In der `Playlist`-Tabelle gibt es immer noch Redundanz. `User_Country` hängt von `User_Name` ab!</p>
+                <p class="mb-4 text-sm text-stone-600">Die Tabelle wird aufgeteilt. Alle Infos, die nur von <code>Playlist_ID</code> (einem <em>Teil</em> des PK) abhängen, kommen in eine eigene Tabelle <code>Playlist</code>.<br><strong>Problem:</strong> In der <code>Playlist</code>-Tabelle gibt es immer noch Redundanz. <code>User_Country</code> hängt von <code>User_Name</code> ab!</p>
                 <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                     <div>
                         <div class="flex items-center justify-between">
@@ -506,7 +506,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
 
             <div id="content-n3" class="norm-content hidden">
                 <h4 class="mb-4 text-xl font-semibold">3. Normalform (Final & Sauber)</h4>
-                <p class="mb-4 text-sm text-stone-600">Letzter Schritt: Wir entfernen "transitive Abhängigkeiten". Infos wie `User_Country` (hängt von `User_Name` ab) und `Artist_Genre` (hängt von `Artist_Name` ab) bekommen eigene Tabellen. Jetzt ist jede Information nur noch *genau einmal* gespeichert. Keine Redundanz mehr!</p>
+                <p class="mb-4 text-sm text-stone-600">Letzter Schritt: Wir entfernen "transitive Abhängigkeiten". Infos wie <code>User_Country</code> (hängt von <code>User_Name</code> ab) und <code>Artist_Genre</code> (hängt von <code>Artist_Name</code> ab) bekommen eigene Tabellen. Jetzt ist jede Information nur noch <strong>genau einmal</strong> gespeichert. Keine Redundanz mehr!</p>
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
                         <div class="flex items-center justify-between">
