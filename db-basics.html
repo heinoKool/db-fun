@@ -97,7 +97,7 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
         <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div class="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
                 <h3 class="mb-3 text-2xl font-semibold text-blue-600">Datenbank (DB)</h3>
-                <p class="text-stone-700">Die Datenbank ist im Grunde nur die reine, strukturierte Sammlung von Daten. Stellen Sie sich ein riesiges, perfekt organisiertes Lagerhaus voller Akten (Daten) vor. Das Lagerhaus selbst <strong>tut</strong> nichts, es <strong>beinhert</strong> nur die Informationen.</p>
+                <p class="text-stone-700">Die Datenbank ist im Grunde nur die reine, strukturierte Sammlung von Daten. Stellen Sie sich ein riesiges, perfekt organisiertes Lagerhaus voller Akten (Daten) vor. Das Lagerhaus selbst <strong>tut</strong> nichts, es <strong>beinaltet</strong> nur die Informationen.</p>
             </div>
             <div class="rounded-lg border border-stone-200 bg-white p-6 shadow-sm">
                 <h3 class="mb-3 text-2xl font-semibold text-blue-600">Datenbankmanagementsystem (DBMS)</h3>
@@ -118,17 +118,14 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
                 <div id="ebene-extern" class="ebene-content rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">1. Externe Ebene (Benutzersichten)</h4>
                     <p class="text-stone-700">Dies ist die Ebene, die der Endbenutzer sieht. Es ist die Benutzeroberfläche, eine GUI, ein Formular oder ein Bericht. Jeder Benutzer (z.B. ein "Sachbearbeiter" oder ein "Administrator") sieht nur die Daten, die für ihn relevant sind, in einer für ihn aufbereiteten Form. Er muss nicht wissen, wie oder wo die Daten gespeichert sind.</p>
-                    <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> GUI, Sachbearbeiter, Administrator</p>
                 </div>
                 <div id="ebene-konzept" class="ebene-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">2. Konzeptionelle Ebene (Logisches Modell)</h4>
                     <p class="text-stone-700">Dies ist die "Architekten-Sicht". Hier wird die logische Struktur <strong>aller</strong> Daten in der Datenbank beschrieben: Welche Tabellen gibt es? Wie hängen sie zusammen (Beziehungen)? Welche Regeln gelten? Diese Ebene ist unabhängig von der physischen Speicherung. Das ER-Modell ist ein Werkzeug, um diese Ebene zu entwerfen.</p>
-                    <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> Semantisches Modell, ER-Modell, Beziehungen</p>
                 </div>
                 <div id="ebene-intern" class="ebene-content hidden rounded-r-lg bg-white p-6">
                     <h4 class="mb-3 text-xl font-semibold text-blue-700">3. Interne Ebene (Physische Speicherung)</h4>
                     <p class="text-stone-700">Dies ist die "Maschinenraum"-Ebene. Sie beschreibt, <strong>wie</strong> die Daten tatsächlich auf der Festplatte gespeichert werden. Hier geht es um Dateistrukturen, Indizes, Speicherblöcke und Optimierung. Der normale Entwickler oder Benutzer muss diese Ebene nicht kennen. Das DBMS (z.B. MariaDB) kümmert sich darum.</p>
-                    <p class="mt-2 text-sm text-stone-500"><strong>PDF-Begriffe:</strong> DBMS, MariaDB, Datei</p>
                 </div>
             </div>
         </div>
