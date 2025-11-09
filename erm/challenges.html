@@ -90,7 +90,7 @@
                     <li>Ein <strong>User</strong> kann mehrere <strong>Posts</strong> erstellen. Ein Post gehört genau einem User.</li>
                     <li>Ein <strong>User</strong> kann viele <strong>Posts</strong> "liken". Ein <strong>Post</strong> kann von vielen <strong>Usern</strong> "geliked" werden.</li>
                     <li>Ein <strong>User</strong> kann viele <strong>Kommentare</strong> schreiben. Ein <strong>Post</strong> kann viele <strong>Kommentare</strong> haben.</li>
-                    <li>Ein <strong>Kommentar</strong> gehört immer zu *genau einem* <strong>User</strong> UND *genau einem* <strong>Post</strong>.</li>
+                    <li>Ein <strong>Kommentar</strong> gehört immer zu <strong>genau einem</strong> <strong>User</strong> UND <strong>genau einem</strong> <strong>Post</strong>.</li>
                     <li>(Die Knifflige): Ein <strong>User</strong> kann vielen anderen <strong>Usern</strong> folgen. Ein <strong>User</strong> kann von vielen anderen <strong>Usern</strong> gefolgt werden.</li>
                 </ul>
 
@@ -122,8 +122,8 @@
                     <li>Ein <strong>Kino</strong> (z.B. "CineStar Potsdamer Platz") hat mehrere <strong>Kinosäle</strong>.</li>
                     <li>Ein <strong>Film</strong> (z.B. "Dune 2") kann in vielen <strong>Kinos</strong> gezeigt werden.</li>
                     <li>Ein <strong>Kino</strong> kann viele <strong>Filme</strong> zeigen. (Vorsicht, Falle! Wie löst man das sauber auf?)</li>
-                    <li>Eine <strong>Vorstellung</strong> (der eigentliche "Event") ist die Vorführung von *genau einem* <strong>Film</strong> in *genau einem* <strong>Saal</strong> zu einem bestimmten <strong>Datum/Uhrzeit</strong>.</li>
-                    <li>Jeder <strong>Saal</strong> hat Attribute, die du mitspeichern sollst: `Name` (z.B. "Saal 8"), `Sitzplätze` (z.B. 250) und `Leinwandgröße_m2` (z.B. 50).</li>
+                    <li>Eine <strong>Vorstellung</strong> (der eigentliche "Event") ist die Vorführung von <strong>genau einem</strong> <strong>Film</strong> in <strong>genau einem</strong> <strong>Saal</strong> zu einem bestimmten <strong>Datum/Uhrzeit</strong>.</li>
+                    <li>Jeder <strong>Saal</strong> hat Attribute, die du mitspeichern sollst: <code>Name</code> (z. B. "Saal 8"), <code>Sitzplätze</code> (z. B. 250) und <code>Leinwandgröße_m2</code> (z. B. 50).</li>
                 </ul>
 
 
@@ -138,7 +138,7 @@
                         <span id="msg-c2" class="text-sm text-red-600"></span>
                     </div>
                     <div id="solution-c2" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
-                        <p class="mb-4 text-sm text-stone-600">Die Kette `Ort &rarr; Kino &rarr; Saal` ist 1:n. Die `Vorstellung` ist die Zwischentabelle, die `Film` und `Saal` (nicht `Kino`!) verbindet und das Datum/die Uhrzeit speichert.</p>
+                        <p class="mb-4 text-sm text-stone-600">Die Kette <code>Ort &rarr; Kino &rarr; Saal</code> ist 1:n. Die <code>Vorstellung</code> ist die Zwischentabelle, die <code>Film</code> und <code>Saal</code> (nicht <code>Kino</code>!) verbindet und das Datum/die Uhrzeit speichert.</p>
                         <object type="image/svg+xml" data="assets/cinema.svg"></object>
                     </div>
                 </div> -->
@@ -156,7 +156,7 @@
                     <li>Ein <strong>Typ</strong> kann zu vielen <strong>Spezies</strong> gehören. (z.B. "Flug" bei "Glurak" und "Taubsi").</li>
                     <li>Eine <strong>Spezies</strong> kann mehrere <strong>Attacken</strong> lernen.</li>
                     <li>Eine <strong>Attacke</strong> (z.B. "Tackle", "Donnerblitz") kann von vielen <strong>Spezies</strong> gelernt werden.</li>
-                    <li>Jede <strong>Attacke</strong> hat aber *genau einen* <strong>Typ</strong> (z.B. "Tackle" ist Typ "Normal", "Donnerblitz" ist Typ "Elektro").</li>
+                    <li>Jede <strong>Attacke</strong> hat aber <strong>genau einen</strong> <strong>Typ</strong> (z.B. "Tackle" ist Typ "Normal", "Donnerblitz" ist Typ "Elektro").</li>
                     <li>(Bonus): Eine <strong>Spezies</strong> kann sich zu einer anderen <strong>Spezies</strong> entwickeln (z.B. "Pikachu" &rarr; "Raichu").</li>
                 </ul>
 
@@ -173,9 +173,9 @@
                         <span id="msg-c3" class="text-sm text-red-600"></span>
                     </div>
                     <div id="solution-c3" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
-                        <p class="mb-4 text-sm text-stone-600">Zwei m:n-Beziehungen (`Spezies_Typ`, `Lernbare_Attacken`) und eine 1:n-Beziehung (`Attacke` &rarr; `Typ`).</p>
+                        <p class="mb-4 text-sm text-stone-600">Zwei m:n-Beziehungen (<code>Spezies_Typ</code>, <code>Lernbare_Attacken</code>) und eine 1:n-Beziehung (<code>Attacke</code> &rarr; <code>Typ</code>).</p>
                         <object type="image/svg+xml" data="assets/pokemon.svg"></object>
-                        <p class="mt-4 text-sm text-stone-600"><strong>Bonus (Entwicklung):</strong> Die Entität `Spezies` hat einen Fremdschlüssel `entwickelt_aus_id` (1:n), der auf ihre *eigene* `id`-Spalte zeigt (Self-Join).</p>
+                        <p class="mt-4 text-sm text-stone-600"><strong>Bonus (Entwicklung):</strong> Die Entität <code>Spezies</code> hat einen Fremdschlüssel <code>entwickelt_aus_id</code> (1:n), der auf ihre <em>eigene</em> <code>id</code>-Spalte zeigt (Self-Join).</p>
                     </div>
                 </div> -->
             </div>
@@ -201,7 +201,7 @@
                         <span id="msg-c4" class="text-sm text-red-600"></span>
                     </div>
                     <div id="solution-c4" class="solution-content hidden pt-4 mt-4 border-t border-stone-200">
-                        <p class="mb-4 text-sm text-stone-600">`Trainer` ist die zentrale Entität. `Trainer` &harr; `Arena` (Leiter) ist 1:1. `Trainer` &harr; `Arena` (Orden) ist m:n. `Pokemon` (individuell) ist die 1:n-Schnittstelle zu `Trainer` und `Spezies`.</p>
+                        <p class="mb-4 text-sm text-stone-600"><code>Trainer</code> ist die zentrale Entität. <code>Trainer</code> &harr; <code>Arena</code> (Leiter) ist 1:1. <code>Trainer</code> &harr; <code>Arena</code> (Orden) ist m:n. <code>Pokemon</code> (individuell) ist die 1:n-Schnittstelle zu <code>Trainer</code> und <code>Spezies</code>.</p>
                         <object type="image/svg+xml" data="assets/pokemon-extended.svg"></object>
                     </div>
                 </div> -->
