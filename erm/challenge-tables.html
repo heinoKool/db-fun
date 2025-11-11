@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabellenmodell-Challenges (ERM → Tabellen)</title>
+    <!-- IBM Plex Serif (regular 400, medium 500) and IBM Plex Mono (regular 400) -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS v4 via jsDelivr CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../css/challenges.css">
+    <style>
+        :root { --font-serif: 'IBM Plex Serif', Georgia, serif; --font-mono: 'IBM Plex Mono', Consolas, monospace; }
+        body { font-family: var(--font-serif); }
+        pre, code, .font-mono { font-family: var(--font-mono); }
+    </style>
+</head>
+<body class="bg-stone-100 text-stone-900 font-sans leading-relaxed">
+<header class="sticky top-0 z-50 bg-white shadow-md">
+    <nav class="container mx-auto flex max-w-6xl items-center justify-between p-4">
+        <h1 class="text-xl font-bold text-blue-600">Tabellenmodell-Challenges</h1>
+        <a href="../db-basics.html" class="text-sm font-medium text-stone-600 hover:text-blue-600">&larr; Zurück zum Skript</a>
+    </nav>
+</header>
+
+<main class="container mx-auto mt-8 max-w-5xl p-4 md:p-8">
+    <section id="hero" class="mb-8">
+        <h2 class="mb-3 text-3xl font-bold text-stone-800">Aufgabe: ERM → Tabellenmodell</h2>
+        <p class="text-stone-700">In diesen Challenges bekommst du ein ER‑Diagramm. Deine Aufgabe: Übersetze das ER‑Modell in ein Tabellenmodell (Tabellen, Primär- und Fremdschlüssel, optionale vs. obligatorische Beziehungen).</p>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <div class="mb-6 flex flex-wrap border-b border-stone-300">
+        <button class="challenge-btn active flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="ta">Aufgabe: Instakram</button>
+        <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="tb">Aufgabe: Kino</button>
+        <button class="challenge-btn flex-grow border-b-2 border-transparent px-4 py-3 text-center text-lg font-medium sm:flex-grow-0" data-tab="tc">Aufgabe: Pokédex</button>
+    </div>
+
+    <!-- Challenge Content -->
+    <div class="rounded-lg bg-white shadow-lg">
+        <!-- Aufgabe A: Instakram -->
+        <div id="content-ta" class="challenge-content p-6 md:p-8">
+            <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-blue-700">Aufgabe — Instakram</h3>
+                <span class="text-sm text-stone-600">Schwierigkeit: Leicht–Mittel</span>
+            </div>
+            <div class="mb-4 flex justify-center">
+                <object type="image/svg+xml" data="assets/instakram.svg" class="w-full max-w-xl"></object>
+            </div>
+        </div>
+
+        <!-- Aufgabe B: Kino -->
+        <div id="content-tb" class="challenge-content hidden p-6 md:p-8">
+            <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-blue-700">Aufgabe — Kino</h3>
+                <span class="text-sm text-stone-600">Schwierigkeit: Mittel</span>
+            </div>
+            <div class="mb-4 flex justify-center">
+                <object type="image/svg+xml" data="assets/cinema.svg" class="w-full max-w-xl"></object>
+            </div>
+        </div>
+
+        <!-- Aufgabe C: Pokédex -->
+        <div id="content-tc" class="challenge-content hidden p-6 md:p-8">
+            <div class="flex items-start justify-between mb-4">
+                <h3 class="text-2xl font-semibold text-blue-700">Aufgabe — Pokédex</h3>
+                <span class="text-sm text-stone-600">Schwierigkeit: Schwer</span>
+            </div>
+            <div class="mb-4 flex justify-center">
+                <object type="image/svg+xml" data="assets/pokemon.svg" class="w-full max-w-xl"></object>
+            </div>
+        </div>
+    </div>
+
+    <section class="mt-10 text-sm text-stone-600">
+        <p>Wenn du möchtest, kannst du deine Lösung in draw.io zeichnen und den Link im Kurs-Chat teilen. Zur Lösungserstellung nutze <a href="https://app.diagrams.net/" target="_blank" rel="noopener" class="text-blue-600">diagrams.net</a> oder skizziere auf Papier.</p>
+    </section>
+</main>
+
+<script>
+// Tab switching for challenge-tables
+document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.challenge-btn');
+    const tabContents = document.querySelectorAll('.challenge-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const targetTab = btn.getAttribute('data-tab');
+
+            tabContents.forEach(c => c.classList.add('hidden'));
+            const targetContent = document.getElementById(`content-${targetTab}`);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+            }
+        });
+    });
+});
+</script>
+
+<footer class="mt-16 border-t border-stone-200 bg-stone-200 p-8 text-center">
+    <p>🦁</p>
+</footer>
+
+<script src="../js/common.js"></script>
+</body>
+</html>
