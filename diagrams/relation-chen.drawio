@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="NvU9KoVd07qeKIwf1aiU" name="class">
-        <mxGraphModel dx="398" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="562" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -41,7 +41,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="cHigButDO74M9LskXDBi" name="course">
-        <mxGraphModel dx="438" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="506" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -82,7 +82,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="ZXR0chDwcror43Kg-o-K" name="teacher">
-        <mxGraphModel dx="438" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="506" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -118,6 +118,281 @@
                 </mxCell>
                 <mxCell id="1zb81Tq_Kt-s6FNw-JSl-7" value="leitet" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" parent="1" vertex="1">
                     <mxGeometry x="350" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="MPZit6NunXQ1lnQqrrxN" name="school">
+        <mxGraphModel dx="1008" dy="869" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-1" value="Schüler:in" style="rounded=0;arcSize=10;whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="270" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;endArrow=none;endFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="yUWEapsYN0iygR7Z7-hg-7" target="yUWEapsYN0iygR7Z7-hg-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="660" y="290" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="482" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-3" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" vertex="1" connectable="0" parent="yUWEapsYN0iygR7Z7-hg-2">
+                    <mxGeometry x="0.7531" y="-1" relative="1" as="geometry">
+                        <mxPoint x="6" y="-10" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;noEdgeStyle=1;orthogonal=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="yUWEapsYN0iygR7Z7-hg-6" target="yUWEapsYN0iygR7Z7-hg-7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                        <mxPoint x="340" y="310" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-5" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;" vertex="1" connectable="0" parent="yUWEapsYN0iygR7Z7-hg-4">
+                    <mxGeometry x="-0.6952" y="1" relative="1" as="geometry">
+                        <mxPoint x="-10" y="-7" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-3" value="" style="edgeStyle=none;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="yUWEapsYN0iygR7Z7-hg-6" target="bphIHFnFa7KraBX_U5_X-2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-6" value="Klasse" style="whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="270" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="yUWEapsYN0iygR7Z7-hg-7" value="hat" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="350" y="260" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="pm9hkEz5DZf3w9LnFTjE-1" value="Kurs" style="rounded=0;arcSize=10;whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="575" y="530" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="pm9hkEz5DZf3w9LnFTjE-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;noEdgeStyle=1;orthogonal=1;endArrow=none;endFill=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="pm9hkEz5DZf3w9LnFTjE-7" target="pm9hkEz5DZf3w9LnFTjE-1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="670" y="550" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="620" y="490"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pm9hkEz5DZf3w9LnFTjE-3" value="m" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;labelBackgroundColor=none;" vertex="1" connectable="0" parent="pm9hkEz5DZf3w9LnFTjE-2">
+                    <mxGeometry x="0.7531" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-9" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pm9hkEz5DZf3w9LnFTjE-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;noEdgeStyle=1;orthogonal=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="yUWEapsYN0iygR7Z7-hg-1" target="pm9hkEz5DZf3w9LnFTjE-7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                        <mxPoint x="350" y="570" as="targetPoint"/>
+                        <mxPoint x="259.9999999999999" y="550" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pm9hkEz5DZf3w9LnFTjE-5" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;labelBackgroundColor=none;" vertex="1" connectable="0" parent="pm9hkEz5DZf3w9LnFTjE-4">
+                    <mxGeometry x="-0.6952" y="1" relative="1" as="geometry">
+                        <mxPoint x="-9" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pm9hkEz5DZf3w9LnFTjE-7" value="belegt" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="560" y="390" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="kF1gqkr-6pAgJCSxxbjG-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;noEdgeStyle=1;orthogonal=1;endArrow=none;endFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;startArrow=none;startFill=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="kF1gqkr-6pAgJCSxxbjG-7" target="yUWEapsYN0iygR7Z7-hg-6">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="360" y="440" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="200" y="370"/>
+                        </Array>
+                        <mxPoint x="290" y="390" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kF1gqkr-6pAgJCSxxbjG-3" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;labelBackgroundColor=none;" vertex="1" connectable="0" parent="kF1gqkr-6pAgJCSxxbjG-2">
+                    <mxGeometry x="0.7531" y="-1" relative="1" as="geometry">
+                        <mxPoint x="-11" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kF1gqkr-6pAgJCSxxbjG-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;noEdgeStyle=1;orthogonal=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=none;endFill=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="kF1gqkr-6pAgJCSxxbjG-6" target="kF1gqkr-6pAgJCSxxbjG-7">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                        <mxPoint x="130" y="460" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kF1gqkr-6pAgJCSxxbjG-5" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;labelBackgroundColor=none;" vertex="1" connectable="0" parent="kF1gqkr-6pAgJCSxxbjG-4">
+                    <mxGeometry x="-0.6952" y="1" relative="1" as="geometry">
+                        <mxPoint x="-10" y="4" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="kF1gqkr-6pAgJCSxxbjG-6" value="Lehrer:in" style="whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="530" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="kF1gqkr-6pAgJCSxxbjG-7" value="leitet" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="390" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-2" value="Id" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="200" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-7" style="edgeStyle=none;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.639;entryY=-0.038;entryDx=0;entryDy=0;endArrow=none;endFill=0;entryPerimeter=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-4" target="yUWEapsYN0iygR7Z7-hg-6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-4" value="Name" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="230" y="200" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-13" style="edgeStyle=none;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-9" target="yUWEapsYN0iygR7Z7-hg-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-9" value="Nachname" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="650" y="220" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-12" value="" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-10" target="yUWEapsYN0iygR7Z7-hg-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-10" value="Vorname" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="180" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-14" style="edgeStyle=none;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-11" target="yUWEapsYN0iygR7Z7-hg-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-11" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="475" y="210" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-18" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-15" target="pm9hkEz5DZf3w9LnFTjE-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-15" value="Titel" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="500" y="600" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-17" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-16" target="pm9hkEz5DZf3w9LnFTjE-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-16" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="630" y="600" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-26" style="edgeStyle=none;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-20" target="kF1gqkr-6pAgJCSxxbjG-6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-20" value="Nachname" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="240" y="600" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-27" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-21" target="kF1gqkr-6pAgJCSxxbjG-6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-21" value="Vorname" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;" vertex="1" parent="1">
+                    <mxGeometry x="270" y="530" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-25" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="bphIHFnFa7KraBX_U5_X-22" target="kF1gqkr-6pAgJCSxxbjG-6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="bphIHFnFa7KraBX_U5_X-22" value="&lt;u&gt;Id&lt;/u&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="600" width="100" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="3CK5ZzLZnHDKcxdwF1mn" name="school-relation">
+        <mxGraphModel dx="829" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="meT0c_UACnylRpQr5C1w-1" value="Schüler:in" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=none;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="140" width="160" height="146" as="geometry"/>
+                </mxCell>
+                <mxCell id="meT0c_UACnylRpQr5C1w-2" value="&lt;u style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;Id (PK)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="meT0c_UACnylRpQr5C1w-1">
+                    <mxGeometry y="26" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="RIHhHYABcLLjB38ud1nE-1" value="K_Id" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="meT0c_UACnylRpQr5C1w-1">
+                    <mxGeometry y="56" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="meT0c_UACnylRpQr5C1w-3" value="Vorname" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="meT0c_UACnylRpQr5C1w-1">
+                    <mxGeometry y="86" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="meT0c_UACnylRpQr5C1w-4" value="Nachname" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="meT0c_UACnylRpQr5C1w-1">
+                    <mxGeometry y="116" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yGsZbjHOFrc48dgj2-Xx-1" value="Lehrer:in" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=none;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="360" width="160" height="116" as="geometry"/>
+                </mxCell>
+                <mxCell id="yGsZbjHOFrc48dgj2-Xx-2" value="&lt;u style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;Id (PK)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="yGsZbjHOFrc48dgj2-Xx-1">
+                    <mxGeometry y="26" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yGsZbjHOFrc48dgj2-Xx-3" value="Vorname" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="yGsZbjHOFrc48dgj2-Xx-1">
+                    <mxGeometry y="56" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yGsZbjHOFrc48dgj2-Xx-4" value="Nachname" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="yGsZbjHOFrc48dgj2-Xx-1">
+                    <mxGeometry y="86" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6eHr6eRDFHiQA-C2jMAx-1" value="Klasse" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=none;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="60" y="140" width="160" height="116" as="geometry">
+                        <mxRectangle x="60" y="140" width="90" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6eHr6eRDFHiQA-C2jMAx-2" value="&lt;u&gt;Id (PK)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="6eHr6eRDFHiQA-C2jMAx-1">
+                    <mxGeometry y="26" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="S8AwqVCwoDMGG3yub_en-6" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=IBM+Plex+Mono&quot;&gt;L_Id (FK)&lt;/font&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="6eHr6eRDFHiQA-C2jMAx-1">
+                    <mxGeometry y="56" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6eHr6eRDFHiQA-C2jMAx-3" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Name&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="6eHr6eRDFHiQA-C2jMAx-1">
+                    <mxGeometry y="86" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6eHr6eRDFHiQA-C2jMAx-5" value="Kurs" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=none;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="440" width="160" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="6eHr6eRDFHiQA-C2jMAx-6" value="&lt;u style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;Id (PK)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="6eHr6eRDFHiQA-C2jMAx-5">
+                    <mxGeometry y="26" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6eHr6eRDFHiQA-C2jMAx-7" value="Titel" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="6eHr6eRDFHiQA-C2jMAx-5">
+                    <mxGeometry y="56" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="S8AwqVCwoDMGG3yub_en-7" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="S8AwqVCwoDMGG3yub_en-6" target="yGsZbjHOFrc48dgj2-Xx-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="30" y="210"/>
+                            <mxPoint x="30" y="320"/>
+                            <mxPoint x="30" y="401"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="RIHhHYABcLLjB38ud1nE-2" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;rounded=1;curved=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="RIHhHYABcLLjB38ud1nE-1" target="6eHr6eRDFHiQA-C2jMAx-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="280" y="211"/>
+                            <mxPoint x="280" y="120"/>
+                            <mxPoint x="30" y="120"/>
+                            <mxPoint x="30" y="181"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-4" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="hSNy9SjnNsenJi1Y_2S1-3" target="6eHr6eRDFHiQA-C2jMAx-6">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="391"/>
+                            <mxPoint x="310" y="430"/>
+                            <mxPoint x="310" y="481"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-1" value="Belegung" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=none;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="340" y="320" width="160" height="86" as="geometry"/>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-2" value="&lt;span style=&quot;color: rgb(63, 63, 63); scrollbar-color: rgb(226, 226, 226) rgb(251, 251, 251);&quot;&gt;&lt;u&gt;S_Id (FK, PK)&lt;/u&gt;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="hSNy9SjnNsenJi1Y_2S1-1">
+                    <mxGeometry y="26" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-3" value="&lt;u&gt;KursId (FK, PK)&lt;/u&gt;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;whiteSpace=wrap;html=1;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="hSNy9SjnNsenJi1Y_2S1-1">
+                    <mxGeometry y="56" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-5" style="edgeStyle=none;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" edge="1" parent="1" source="meT0c_UACnylRpQr5C1w-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="340" y="181" as="sourcePoint"/>
+                        <mxPoint x="340" y="361" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="310" y="180"/>
+                            <mxPoint x="310" y="280"/>
+                            <mxPoint x="310" y="361"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-14" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;flipH=1;labelPosition=right;verticalLabelPosition=middle;align=left;verticalAlign=middle;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="510" y="350" width="20" height="49" as="geometry"/>
+                </mxCell>
+                <mxCell id="hSNy9SjnNsenJi1Y_2S1-15" value="Zusammengesetzter PK&lt;div&gt;&lt;font color=&quot;#000000&quot;&gt;Verbundschlüssel&lt;br&gt;&lt;/font&gt;&lt;div&gt;Composite Key&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=IBM Plex Mono;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DIBM%2BPlex%2BMono;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="344.5" width="170" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -246,89 +246,35 @@ In den Übungen wendest du Normalisierungsregeln an und begründest kurz deine M
         <div id="content-tabellen" class="tab-content hidden rounded-lg bg-white p-6">
             <h3 class="mb-4 text-2xl font-semibold">2. Das Tabellenmodell (Logisch)</h3>
             <p class="mb-4 text-stone-700">Im logischen Modell wird das ERM in ein relationales Modell (Tabellen) übersetzt. Aus Entitäten werden Tabellen und aus Attributen werden Spalten. Wir nutzen unser "Schule"-Beispiel:</p>
+            
+            <div class="mb-6 flex justify-center">
+                <object type="image/svg+xml" data="diagrams/school.svg" class="w-full max-w-2xl"></object>
+            </div>
+            
             <h4 class="mb-4 text-xl font-semibold">Die Abbildungsregeln</h4>
 
             <ul class="mb-4 list-none space-y-6 text-stone-700">
                 <li>
-                    <strong>Regel 1 (Entität):</strong> Jede Entitätsmenge (z. B. <code>Schüler</code>, <code>Klasse</code>, <code>Kurs</code>) wird zu einer eigenen Tabelle.
-                    <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
-                        <div>
-                            <h5 class="text-sm font-semibold">Tabelle: Klasse</h5>
-                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
-                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">1</td><td class="p-2">10a</td></tr><tr><td class="p-2">2</td><td class="p-2">10b</td></tr></tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h5 class="text-sm font-semibold">Tabelle: Schüler</h5>
-                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Vorname</th><th class="p-2 text-left">Nachname</th></tr></thead>
-                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">101</td><td class="p-2">Max</td><td class="p-2">Mustermann</td></tr></tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h5 class="text-sm font-semibold">Tabelle: Kurs</h5>
-                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Titel</th></tr></thead>
-                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">42</td><td class="p-2">Mathe-LK</td></tr></tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <strong>Regel 1 (Entität):</strong> Jede Entitätsmenge (z. B. <code>Schüler:in</code>, <code>Klasse</code>, <code>Kurs</code>, <code>Lehrer:in</code>) wird zu einer eigenen Tabelle.
                 </li>
 
                 <li>
-                    <strong>Regel 3 (1:n):</strong> Bei einer 1:n-Beziehung (z. B. <code>Klasse</code> 1---n <code>Schüler</code>) wird der Primärschlüssel der '1'-Seite (z. B. <code>Klasse.id</code>) als <strong>Fremdschlüssel</strong> in die Tabelle der 'n'-Seite (z. B. <code>Schüler.kid_FK</code>) aufgenommen.
-                    <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-2">
-                        <div>
-                            <h5 class="text-sm font-semibold">Tabelle: Klasse (unverändert)</h5>
-                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Name</th></tr></thead>
-                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">1</td><td class="p-2">10a</td></tr></tbody>
-                            </table>
-                        </div>
-                        <div>
-                            <h5 class="text-sm font-semibold">Tabelle: Schüler (mit FK)</h5>
-                            <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                                <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Vorname</th><th class="p-2 text-left">Nachname</th><th class="p-2 text-left bg-blue-100">kid_FK (FK)</th></tr></thead>
-                                <tbody class="divide-y divide-stone-200"><tr><td class="p-2">101</td><td class="p-2">Max</td><td class="p-2">Mustermann</td><td class="p-2 bg-blue-50">1</td></tr></tbody>
-                            </table>
-                        </div>
-                    </div>
+                    <strong>Regel 2 (1:1):</strong> Eine 1:1-Beziehung kann entweder durch das Aufnehmen des Primärschlüssels der einen Tabelle als Fremdschlüssel in der anderen Tabelle abgebildet werden oder — wenn die Beziehung zwingend und untrennbar ist — durch Zusammenführen beider Entitäten in eine Tabelle.
                 </li>
 
                 <li>
-                    <strong>Regel 4 (m:n):</strong> m:n-Beziehungen (z. B. <code>Schüler</code> m---n <code>Kurs</code>) können nicht direkt abgebildet werden. Sie <strong>müssen</strong> aufgelöst werden!
+                    <strong>Regel 3 (1:n):</strong> Bei einer 1:n-Beziehung (z. B. <code>Klasse</code>-<code>Schüler</code>) wird der Primärschlüssel der '1'-Seite (z. B. <code>Klasse.id</code>) als <strong>Fremdschlüssel</strong> in die Tabelle der 'n'-Seite (z. B. <code>Schüler.kid_FK</code>) aufgenommen.
+                </li>
+
+                <li>
+                    <strong>Regel 4 (m:n):</strong> m:n-Beziehungen (z. B. <code>Schüler</code>-<code>Kurs</code>) können nicht direkt abgebildet werden. Sie <strong>müssen</strong> aufgelöst werden!
                 </li>
             </ul>
 
-            <h4 class="mb-2 text-xl font-semibold">Auflösung einer m:n-Beziehung</h4>
-            <p class="mb-4 text-stone-700">Man erstellt eine neue <strong>Zwischentabelle</strong> (Koppeltabelle), die die m:n-Beziehung in zwei 1:n-Beziehungen aufspaltet. Diese Tabelle (z. B. <code>belegt</code>) enthält die Fremdschlüssel <strong>beider</strong> beteiligten Tabellen (z. B. <code>schueler_id_FK</code> und <code>kurs_id_FK</code>).</p>
-            <div class="mt-3 grid grid-cols-1 gap-4 md:grid-cols-3">
-                <div>
-                    <h5 class="text-sm font-semibold">Tabelle: Schüler</h5>
-                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                        <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Vorname</th></tr></thead>
-                        <tbody class="divide-y divide-stone-200"><tr><td class="p-2">101</td><td class="p-2">Max</td></tr><tr><td class="p-2">102</td><td class="p-2">Anna</td></tr></tbody>
-                    </table>
-                </div>
-                <div>
-                    <h5 class="text-sm font-semibold">Tabelle: Kurs</h5>
-                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                        <thead class="bg-stone-50"><tr><th class="p-2 text-left">id (PK)</th><th class="p-2 text-left">Titel</th></tr></thead>
-                        <tbody class="divide-y divide-stone-200"><tr><td class="p-2">42</td><td class="p-2">Mathe-LK</td></tr><tr><td class="p-2">43</td><td class="p-2">Bio-LK</td></tr></tbody>
-                    </table>
-                </div>
-                <div>
-                    <h5 class="text-sm font-semibold">NEUE Tabelle: belegt</h5>
-                    <table class="mt-1 min-w-full divide-y divide-stone-200 border text-sm">
-                        <thead class="bg-stone-50"><tr><th class="p-2 text-left bg-blue-100">schueler_id (PK, FK)</th><th class="p-2 text-left bg-blue-100">kurs_id (PK, FK)</th></tr></thead>
-                        <tbody class="divide-y divide-stone-200">
-                        <tr><td class="p-2 bg-blue-50">101</td><td class="p-2 bg-blue-50">42</td></tr>
-                        <tr><td class="p-2 bg-blue-50">101</td><td class="p-2 bg-blue-50">43</td></tr>
-                        <tr><td class="p-2 bg-blue-50">102</td><td class="p-2 bg-blue-50">42</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            <h5 class="mb-2 text-xl font-semibold">Auflösung einer m:n-Beziehung</h5>
+            <p class="mb-4 text-stone-700">Man erstellt eine neue <strong>Zwischentabelle</strong> (Koppeltabelle), die die m:n-Beziehung in zwei 1:n-Beziehungen aufspaltet. Diese Tabelle (z. B. <code>Belegung</code>) enthält die Fremdschlüssel <strong>beider</strong> beteiligten Tabellen (z. B. <code>S_Id</code> und <code>K_Id</code>).</p>
+            <div class="mb-6 flex justify-center">
+                <object type="image/svg+xml" data="diagrams/school4.svg" class="w-full max-w-2xl"></object>
             </div>
         </div>
 
